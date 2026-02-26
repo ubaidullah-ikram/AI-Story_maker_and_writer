@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:ai_story_writer/model/story_model.dart';
 import 'package:ai_story_writer/services/history_db.dart';
 import 'package:ai_story_writer/services/query_manager_services.dart';
+import 'package:ai_story_writer/services/remote_config.dart';
 import 'package:ai_story_writer/view/pro_screen/pro_secreen.dart';
 import 'package:ai_story_writer/view_model/pro_sccree_model/pro_Screen_controller.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class GeminiApiServiceController extends GetxController {
 
   var userInputController = TextEditingController();
   // 🔑 Your API credentials
-  String get geminiApiKey => dotenv.env['GEMINI_API_KEY'] ?? '';
+  String get geminiApiKey => RemoteConfigService().apiKey;
   final String baseUrl =
       "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent";
 
