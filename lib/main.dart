@@ -12,6 +12,7 @@ import 'package:ai_story_writer/view_model/splash_controller/splash_screen_contr
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -23,6 +24,8 @@ void main() async {
     );
   } catch (e) {}
   await MobileAds.instance.initialize();
+  await dotenv.load(fileName: ".env"); // Add this line
+
   try {
     await RevenueCatHelper().initPlatformState();
   } catch (e) {}

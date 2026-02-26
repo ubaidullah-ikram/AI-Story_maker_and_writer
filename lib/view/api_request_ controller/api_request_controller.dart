@@ -8,6 +8,7 @@ import 'package:ai_story_writer/services/query_manager_services.dart';
 import 'package:ai_story_writer/view/pro_screen/pro_secreen.dart';
 import 'package:ai_story_writer/view_model/pro_sccree_model/pro_Screen_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -37,7 +38,7 @@ class GeminiApiServiceController extends GetxController {
 
   var userInputController = TextEditingController();
   // 🔑 Your API credentials
-  final String apiKey = "AIzaSyD8MViTttwmWV1_t7nHeGsMI3MrKT72Jy4";
+  String get geminiApiKey => dotenv.env['GEMINI_API_KEY'] ?? '';
   final String baseUrl =
       "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent";
 
@@ -62,7 +63,7 @@ class GeminiApiServiceController extends GetxController {
       }
       log('allwoing request');
       // 🌐 HTTP POST Request
-      final url = Uri.parse("$baseUrl?key=$apiKey");
+      final url = Uri.parse("$baseUrl?key=$geminiApiKey");
 
       final response = await http
           .post(

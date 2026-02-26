@@ -16,6 +16,10 @@ ios/Flutter/App.framework
 
 # MacOS
 macos/Pods/
+# ...existing code...
+# Environment variables
+.env
+.env.*
 
 # Generated files
 *.log
