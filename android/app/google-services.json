@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "677931017034",
+    "project_id": "ai-story-and-script",
+    "storage_bucket": "ai-story-and-script.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677931017034:android:b3d71156a60ce2801d17b3",
+        "android_client_info": {
+          "package_name": "com.ai.story.generator.novel.script.writer.maker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQVhxrPZ5h6rHqu_H2cN43s0yjCqNC2Mo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
