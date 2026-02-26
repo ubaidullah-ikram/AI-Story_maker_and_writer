@@ -339,6 +339,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       // TextButton(
                       //   onPressed: () async {
+                      //   onPressed: () async {
                       //     final prefs = await SharedPreferences.getInstance();
                       //     showRatingPrompt();
                       //     // await prefs.setInt(appOpenCountKey, 0);
