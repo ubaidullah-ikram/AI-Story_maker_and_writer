@@ -136,11 +136,7 @@ Map<String, String> zh = {
   "Unlock All Styles & Tones": "解锁所有风格和语气",
   "No Word/Length Limit": "无字数/长度限制",
   "Remove All Ads": "移除所有广告",
-  "3 days free": "3天免费",
   "Restore": "恢复",
-  "YouTube Video": "YouTube视频",
-  "Podcast": "播客",
-  "Reel": "短视频",
   AppKeys.russian: "俄语",
   AppKeys.spanish: "西班牙语",
   "AI Story Writer": "AI故事作家",
@@ -158,4 +154,184 @@ Map<String, String> zh = {
   "Submit Rating": "提交评分",
   "Hindi": "印地语",
   "Enjoying AI Story Generator?": "喜欢 AI 故事生成器吗？",
+
+  // New strings for download & actions
+  'Download As': '下载为',
+  'Choose format to download': '选择下载格式',
+  'Text File': '文本文件',
+  'PDF File': 'PDF文件',
+  'Copy': '复制',
+  'Share': '分享',
+  'Text copied!': '文本已复制！',
+  'PDF saved successfully!': 'PDF保存成功！',
+  'Error creating PDF: Please try again': '创建PDF时出错：请重试',
+
+  // Character Story Tool
+  'Character Story': '角色故事',
+  'Character Details': '角色详情',
+  'Character Name': '角色名称',
+  'Age (e.g., 25, Young Adult, Ancient)': '年龄（例如：25岁、青年、古老）',
+  'Personality (e.g., brave, shy, cunning)': '性格（例如：勇敢、害羞、狡猾）',
+  'Role (e.g., Hero, Villain, Mentor)': '角色定位（例如：英雄、反派、导师）',
+  'Additional Details (optional)': '其他详情（可选）',
+  'Output Style': '输出风格',
+  'Generate Character': '生成角色',
+  'Please enter character name': '请输入角色名称',
+  'Please enter character role': '请输入角色定位',
+  // Output Styles
+  'Detailed': '详细',
+  'Brief': '简短',
+  'Elaborate': '精细',
+
+  // Home Screen Tool Cards
+  'Create detailed character backstories': '创建详细的角色背景故事',
+  'Create Character': '创建角色',
+  'Transform and improve your existing stories': '转换并改进您现有的故事',
+  'Rewrite Now': '立即重写',
+  'Generate catchy titles for your stories': '为您的故事生成吸引人的标题',
+  'Generate Titles': '生成标题',
+
+  // Rewrite Story Tool
+  'Rewrite Story': '重写故事',
+  'Paste Your Story': '粘贴您的故事',
+  'Paste your story here to rewrite...': '在此粘贴您要重写的故事...',
+  'Select Tone': '选择语气',
+  'Rewrite Style': '重写风格',
+  'Output Length': '输出长度',
+  'Please paste your story': '请粘贴您的故事',
+  'Story is too short. Please provide more content.': '故事太短。请提供更多内容。',
+  // Tone options
+  'Same': '相同',
+  'More Dramatic': '更戏剧化',
+  'More Humorous': '更幽默',
+  'More Emotional': '更情感化',
+  'More Suspenseful': '更悬疑',
+  'Lighter': '更轻松',
+  // Style options
+  'Improved': '改进',
+  'Simplified': '简化',
+  'More Descriptive': '更描述性',
+  'More Dialogue': '更多对话',
+  'More Action': '更多动作',
+  'Literary': '文学性',
+  // Length options
+  'Shorter': '更短',
+  'Longer': '更长',
+  'Much Longer': '更长得多',
+
+  // Title Generator Tool
+  'Title Generator': '标题生成器',
+  'Story/Book Topic': '故事/书籍主题',
+  'Keywords (Optional)': '关键词（可选）',
+  'Describe your story topic or theme...': '描述您的故事主题或主旨...',
+  'e.g., magic, dragon, adventure': '例如：魔法、龙、冒险',
+  'Title For': '标题用于',
+  'Title Style': '标题风格',
+  'Number of Titles': '标题数量',
+  // Type options
+  'Book': '书籍',
+  'Short Story': '短篇故事',
+  'Novel': '小说',
+  'Chapter': '章节',
+  'Series': '系列',
+  // Title Style options
+  'Simple': '简单',
+  'Mysterious': '神秘',
+  'Dramatic': '戏剧性',
+  'Catchy': '吸引眼球',
+  'Poetic': '诗意',
+  // Genre options
+  'Kids': '儿童',
+
+  // Blog Writer Tool
+  'Blog Writer': '博客写手',
+  'Blog Topic': '博客主题',
+  'Target Keywords': '目标关键词',
+  'Target Audience (Optional)': '目标受众（可选）',
+  'Enter your blog topic or title...': '输入您的博客主题或标题...',
+  'e.g., AI writing, content marketing, SEO tips': '例如：AI写作、内容营销、SEO技巧',
+  'e.g., small business owners, bloggers': '例如：小企业主、博主',
+  'Article Type': '文章类型',
+  'Writing Tone': '写作语气',
+  'Article Length': '文章长度',
+  'SEO Options': 'SEO选项',
+  'Include Meta Description': '包含元描述',
+  'Include Keyword Suggestions': '包含关键词建议',
+  'Include FAQs Section': '包含常见问题部分',
+  'Please enter a blog topic': '请输入博客主题',
+  'Generate Blog': '生成博客',
+  'SEO optimized articles with keywords': '带关键词的SEO优化文章',
+  'Write Blog': '撰写博客',
+  // Article Types
+  'SEO Article': 'SEO文章',
+  'How-To Guide': '操作指南',
+  'Listicle': '清单文章',
+  'Product Review': '产品评测',
+  'Opinion Piece': '观点文章',
+  'News Article': '新闻文章',
+  // Blog Tones
+  'Professional': '专业',
+  'Casual': '休闲',
+  'Informative': '信息性',
+  'Persuasive': '说服性',
+  'Friendly': '友好',
+  'Authoritative': '权威',
+  // Blog Lengths
+  'Short (500-800)': '短篇 (500-800)',
+  'Medium (800-1500)': '中篇 (800-1500)',
+  'Long (1500-2500)': '长篇 (1500-2500)',
+  'Detailed (2500+)': '详细 (2500+)',
+
+  // YouTube Script Tool
+  'YouTube Script': 'YouTube脚本',
+  'Video Topic': '视频主题',
+  'Key Points (Optional)': '要点（可选）',
+  'What is your video about?': '您的视频是关于什么的？',
+  'List key points to cover (optional)...': '列出要涵盖的要点（可选）...',
+  'Video Duration': '视频时长',
+  'Script Options': '脚本选项',
+  'Include Hook/Intro': '包含钩子/引言',
+  'Include Call-to-Action': '包含行动号召',
+  'Include Timestamps': '包含时间戳',
+  'Please enter a video topic': '请输入视频主题',
+  'Generate Script': '生成脚本',
+  'Create scripts for videos & reels': '为视频和短视频创建脚本',
+  'Create Script': '创建脚本',
+  // Script Types
+  'Storytime': '故事时间',
+  'Documentary': '纪录片',
+  'Short Reel': '短视频',
+  'Educational': '教育',
+  'Review': '评测',
+  'Tutorial': '教程',
+  // Durations
+  '< 1 min (Shorts)': '< 1分钟 (短视频)',
+  '1-3 min': '1-3分钟',
+  '5-10 min': '5-10分钟',
+  '10-20 min': '10-20分钟',
+  '20+ min': '20+分钟',
+  // Script Tones
+  'Engaging': '引人入胜',
+  'Energetic': '充满活力',
+  'Calm': '平静',
+  'Funny': '有趣',
+
+  // Story Generator - Styles
+  'Inspired': '灵感',
+
+  // Script Writer - Script Tones (formats)
+  'Film Script': '电影剧本',
+  'Stage Play': '舞台剧',
+  'Scene Breakdown': '场景分解',
+  'Dialogue Only': '仅对话',
+
+  // Ad & UI
+  'Ad loading please wait..': '广告加载中，请稍候..',
+
+  // Word Counter & Reading Time
+  'Words:': '字数:',
+  'Reading:': '阅读时间:',
+
+  // Missing strings from hi.dart
+  'Adventure': '冒险',
 };

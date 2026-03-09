@@ -6,7 +6,7 @@ import 'package:ai_story_writer/services/query_manager_services.dart';
 import 'package:ai_story_writer/services/remote_config.dart';
 import 'package:ai_story_writer/services/revnue_cat_service.dart';
 import 'package:ai_story_writer/view/splash_view/splash_sc_view.dart';
-import 'package:ai_story_writer/view_model/language_controller/lanugage_controller.dart';
+import 'package:ai_story_writer/view_model/language_controller/locale_controller.dart';
 import 'package:ai_story_writer/view_model/pro_sccree_model/pro_Screen_controller.dart';
 import 'package:ai_story_writer/view_model/splash_controller/splash_screen_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -30,7 +30,10 @@ void main() async {
     await RevenueCatHelper().initPlatformState();
   } catch (e) {}
 
-  Get.put(LocalController());
+  // Initialize LocalController and load language BEFORE running app
+  final localController = Get.put(LocalController());
+  await localController.loadSavedLanguage();
+
   Get.put(ProScreenController());
   try {
     await RemoteConfigService().init();
@@ -52,16 +55,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var localcontroller = Get.put(LocalController());
+    final localcontroller = Get.find<LocalController>();
     SizeConfig.init(context);
-    return GetMaterialApp(
-      theme: ThemeData(fontFamily: AppFonts.inter),
-      title: 'Ai Story Writer',
-      translations: AppTranslations(),
-      locale: Locale(localcontroller.selectedlngCode.value),
-
-      fallbackLocale: Locale('en'),
-      home: SplashScView(),
+    return Obx(
+      () => GetMaterialApp(
+        theme: ThemeData(fontFamily: AppFonts.inter),
+        title: 'Ai Story Writer',
+        translations: AppTranslations(),
+        locale: Locale(localcontroller.selectedlngCode.value),
+        fallbackLocale: const Locale('en'),
+        home: SplashScView(),
+      ),
     );
   }
 }

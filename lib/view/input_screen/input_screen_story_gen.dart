@@ -43,12 +43,16 @@ class _StoryGeneratorInputScreenState extends State<StoryGeneratorInputScreen> {
     'Thriller',
     'Horror',
     'Sci-Fi',
+    'Romance',
+    'Comedy',
+    'Kids',
+    'Drama',
+    'Adventure',
   ];
   final List<String> styles = [
     'Standard',
     'Imaginative',
     'Innovative',
-
     'Inspired',
   ];
 

@@ -233,7 +233,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                         child: Center(
                           child: Text(
                             currentIndex == 2
-                                ? AppKeys.btngetStarted.tr
+                                ? "Get Started".tr
                                 : AppKeys.btnNext.tr,
                             style: TextStyle(
                               fontFamily: AppFonts.inter,

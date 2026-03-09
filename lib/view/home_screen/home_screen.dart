@@ -16,6 +16,11 @@ import 'package:ai_story_writer/view/home_screen/widgets/guidance_alert.dart';
 import 'package:ai_story_writer/view/input_screen/input_sc_essay_writter.dart';
 import 'package:ai_story_writer/view/input_screen/input_screen_story_gen.dart';
 import 'package:ai_story_writer/view/input_screen/script_writter_input.dart';
+import 'package:ai_story_writer/view/input_screen/character_story_input.dart';
+import 'package:ai_story_writer/view/input_screen/rewrite_story_input.dart';
+import 'package:ai_story_writer/view/input_screen/title_generator_input.dart';
+import 'package:ai_story_writer/view/input_screen/blog_writer_input.dart';
+import 'package:ai_story_writer/view/input_screen/youtube_script_input.dart';
 import 'package:ai_story_writer/view/pro_screen/pro_secreen.dart';
 import 'package:ai_story_writer/view_model/home_view_model/home_view_model.dart';
 import 'package:ai_story_writer/view_model/input_controller/input_controller.dart';
@@ -146,8 +151,8 @@ class _HomeScreenState extends State<HomeScreen> {
               const CircularProgressIndicator(),
               const SizedBox(height: 20),
               const SizedBox(height: 10),
-              const Text(
-                'Ad loading please wait..',
+              Text(
+                'Ad loading please wait..'.tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 18,
@@ -208,7 +213,17 @@ class _HomeScreenState extends State<HomeScreen> {
           ? "story_gen_tool"
           : index == 1
           ? "essay_writer_tool"
-          : "script_gen_tool",
+          : index == 2
+          ? "script_gen_tool"
+          : index == 3
+          ? "character_story_tool"
+          : index == 4
+          ? "rewrite_story_tool"
+          : index == 5
+          ? "title_gen_tool"
+          : index == 6
+          ? "blog_writer_tool"
+          : "youtube_script_tool",
       index,
     );
   }
@@ -220,6 +235,16 @@ class _HomeScreenState extends State<HomeScreen> {
       Get.to(() => EssayWriterScreen());
     } else if (index == 2) {
       Get.to(() => ScriptWritterInput());
+    } else if (index == 3) {
+      Get.to(() => CharacterStoryInputScreen());
+    } else if (index == 4) {
+      Get.to(() => RewriteStoryInputScreen());
+    } else if (index == 5) {
+      Get.to(() => TitleGeneratorInputScreen());
+    } else if (index == 6) {
+      Get.to(() => BlogWriterInputScreen());
+    } else if (index == 7) {
+      Get.to(() => YouTubeScriptInputScreen());
     }
   }
 
@@ -376,6 +401,67 @@ class _HomeScreenState extends State<HomeScreen> {
                         Color(0xffF973A4),
                         () {
                           loadInterAd(2);
+                        },
+                      ),
+                      SizedBox(height: 16),
+
+                      // New Tools - Module 1
+                      buildToolCard(
+                        AppImages.Your_own_character,
+                        'Character Story',
+                        'Create detailed character backstories',
+                        'Create Character',
+                        Color(0xff4ECDC4),
+                        () {
+                          loadInterAd(3);
+                        },
+                      ),
+                      SizedBox(height: 16),
+                      buildToolCard(
+                        AppImages.Rewrite_story,
+                        'Rewrite Story',
+                        'Transform and improve your existing stories',
+                        'Rewrite Now',
+                        Color(0xffFF6B6B),
+                        () {
+                          loadInterAd(4);
+                        },
+                      ),
+                      SizedBox(height: 16),
+                      buildToolCard(
+                        AppImages.title,
+                        'Title Generator',
+                        'Generate catchy titles for your stories',
+                        'Generate Titles',
+                        Color(0xffA855F7),
+                        () {
+                          loadInterAd(5);
+                        },
+                      ),
+                      SizedBox(height: 16),
+
+                      // Module 2: Blog Writer
+                      buildToolCard(
+                        AppImages.Blog_write,
+                        'Blog Writer',
+                        'SEO optimized articles with keywords',
+                        'Write Blog',
+                        Color(0xff10B981),
+                        () {
+                          loadInterAd(6);
+                        },
+                      ),
+                      SizedBox(height: 16),
+
+                      // Module 3: YouTube Script Generator
+                      buildToolCard(
+                        AppImages.Youtube_Script,
+                        'YouTube Script',
+                        'Create scripts for videos & reels',
+                        'Create Script',
+                        Color(0xffEF4444),
+                        () {
+                          loadInterAd(7);
                         },
                       ),
                       SizedBox(height: 16),

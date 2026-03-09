@@ -1,25 +1,147 @@
+import 'package:ai_story_writer/constant/locallization/af.dart';
+import 'package:ai_story_writer/constant/locallization/am.dart';
 import 'package:ai_story_writer/constant/locallization/ar.dart';
+import 'package:ai_story_writer/constant/locallization/az.dart';
+import 'package:ai_story_writer/constant/locallization/be.dart';
+import 'package:ai_story_writer/constant/locallization/bg.dart';
+import 'package:ai_story_writer/constant/locallization/bn.dart';
+import 'package:ai_story_writer/constant/locallization/ca.dart';
+import 'package:ai_story_writer/constant/locallization/cs.dart';
+import 'package:ai_story_writer/constant/locallization/da.dart';
 import 'package:ai_story_writer/constant/locallization/de.dart';
+import 'package:ai_story_writer/constant/locallization/el.dart';
 import 'package:ai_story_writer/constant/locallization/en.dart';
 import 'package:ai_story_writer/constant/locallization/es.dart';
+import 'package:ai_story_writer/constant/locallization/et.dart';
+import 'package:ai_story_writer/constant/locallization/eu.dart';
+import 'package:ai_story_writer/constant/locallization/fa.dart';
+import 'package:ai_story_writer/constant/locallization/fi.dart';
+import 'package:ai_story_writer/constant/locallization/fil.dart';
 import 'package:ai_story_writer/constant/locallization/fr.dart';
+import 'package:ai_story_writer/constant/locallization/gl.dart';
+import 'package:ai_story_writer/constant/locallization/gu.dart';
+import 'package:ai_story_writer/constant/locallization/he.dart';
+import 'package:ai_story_writer/constant/locallization/hi.dart';
+import 'package:ai_story_writer/constant/locallization/hr.dart';
+import 'package:ai_story_writer/constant/locallization/hu.dart';
+import 'package:ai_story_writer/constant/locallization/hy.dart';
 import 'package:ai_story_writer/constant/locallization/id.dart';
+import 'package:ai_story_writer/constant/locallization/is_s.dart';
+import 'package:ai_story_writer/constant/locallization/it.dart';
+import 'package:ai_story_writer/constant/locallization/ja.dart';
+import 'package:ai_story_writer/constant/locallization/ka.dart';
+import 'package:ai_story_writer/constant/locallization/kk.dart';
+import 'package:ai_story_writer/constant/locallization/km.dart';
+import 'package:ai_story_writer/constant/locallization/kn.dart';
+import 'package:ai_story_writer/constant/locallization/ko.dart';
+import 'package:ai_story_writer/constant/locallization/ky.dart';
+import 'package:ai_story_writer/constant/locallization/lo.dart';
+import 'package:ai_story_writer/constant/locallization/lv.dart';
+import 'package:ai_story_writer/constant/locallization/mk.dart';
+import 'package:ai_story_writer/constant/locallization/mn.dart';
+import 'package:ai_story_writer/constant/locallization/ms.dart';
+import 'package:ai_story_writer/constant/locallization/my.dart';
+import 'package:ai_story_writer/constant/locallization/ne.dart';
+import 'package:ai_story_writer/constant/locallization/nl.dart';
+import 'package:ai_story_writer/constant/locallization/no.dart';
+import 'package:ai_story_writer/constant/locallization/pa.dart';
+import 'package:ai_story_writer/constant/locallization/pl.dart';
 import 'package:ai_story_writer/constant/locallization/pt.dart';
+import 'package:ai_story_writer/constant/locallization/ro.dart';
 import 'package:ai_story_writer/constant/locallization/ru.dart';
+import 'package:ai_story_writer/constant/locallization/si.dart';
+import 'package:ai_story_writer/constant/locallization/sk.dart';
+import 'package:ai_story_writer/constant/locallization/sl.dart';
+import 'package:ai_story_writer/constant/locallization/sq.dart';
+import 'package:ai_story_writer/constant/locallization/sr.dart';
+import 'package:ai_story_writer/constant/locallization/sv.dart';
+import 'package:ai_story_writer/constant/locallization/sw.dart';
+import 'package:ai_story_writer/constant/locallization/ta.dart';
+import 'package:ai_story_writer/constant/locallization/th.dart';
+import 'package:ai_story_writer/constant/locallization/tr.dart';
+import 'package:ai_story_writer/constant/locallization/uk.dart';
+import 'package:ai_story_writer/constant/locallization/ur.dart';
+import 'package:ai_story_writer/constant/locallization/vi.dart';
 import 'package:ai_story_writer/constant/locallization/zh.dart';
+import 'package:ai_story_writer/constant/locallization/zu.dart';
 import 'package:get/get_navigation/src/root/internacionalization.dart';
 
 class AppTranslations extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
+    'af': af,
+    'am': am,
+    'ar': ar,
+    'az': az,
+    'be': be,
+    'bg': bg,
+    'bn': bn,
+    'ca': ca,
+    "cs": cs,
+    'da': da,
+    'de': de,
+    "el": el,
     'en': en,
     'es': es,
-    'ar': ar,
-    "pt": pt,
-    "de": de,
-    "fr": fr,
-    "id": id,
-    "ru": ru,
-    "zh": zh,
+    'et': et,
+    'eu': eu,
+    'fa': fa,
+    'fi': fi,
+    'fil': fil,
+    'fr': fr,
+    'gl': gl,
+    //
+    'gu': gu,
+    'he': he,
+    'hi': hi,
+    'hr': hr,
+    'hu': hu,
+    'hy': hy,
+    'id': id,
+    'is': is_,
+    'it': it,
+    'ja': ja,
+
+    'ka': ka,
+    'kk': kk,
+
+    // 1
+    'km': km,
+
+    'kn': kn,
+    'ko': ko,
+    'ky': ky,
+    'lo': lo,
+    'lv': lv,
+    'mk': mk,
+    'mn': mn,
+    'ms': ms,
+    // 2
+    'my': my,
+    'ne': ne,
+    'nl': nl,
+    'no': no,
+    'pa': pa,
+    'pl': pl,
+    'pt': pt,
+    'ro': ro,
+    'ru': ru,
+    'si': si,
+    'sk': sk,
+    // 3
+    'sl': sl,
+    'sq': sq,
+    'sr': sr,
+    'sv': sv,
+    'sw': sw,
+    'ta': ta,
+    'th': th,
+
+    'tr': tr,
+    'uk': uk,
+    'ur': ur,
+    'vi': vi,
+    'zh': zh,
+    'zu': zu,
   };
 }

@@ -9,11 +9,9 @@ import 'package:ai_story_writer/services/remote_config.dart';
 import 'package:ai_story_writer/view/pro_screen/pro_secreen.dart';
 import 'package:ai_story_writer/view_model/pro_sccree_model/pro_Screen_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class GeminiApiServiceController extends GetxController {
   final selectedAcademicLevel = 'High School'.obs;

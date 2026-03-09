@@ -5,6 +5,7 @@ import 'package:ai_story_writer/res/app_colors/app_colors.dart';
 import 'package:ai_story_writer/res/app_fonts/app_fonts.dart';
 import 'package:ai_story_writer/res/app_images/app_images.dart';
 import 'package:ai_story_writer/res/app_responsive/responsive_config.dart';
+import 'package:ai_story_writer/res/custom_rating.dart';
 import 'package:ai_story_writer/view/language_view/language_sc.dart';
 import 'package:ai_story_writer/view/pro_screen/pro_secreen.dart';
 import 'package:ai_story_writer/view_model/pro_sccree_model/pro_Screen_controller.dart';
@@ -104,15 +105,16 @@ class _SettingScreenState extends State<SettingScreen> {
                     //   },
                     // ),
                     buildtile(
-                      title: 'Rate Us',
-                      onTap: () {
-                        if (Platform.isAndroid) {
-                          _launchURL(
-                            'https://play.google.com/store/apps/details?id=com.ai.story.generator.novel.script.writer.maker',
-                          );
-                        } else {
-                          _launchURL('https://apps.apple.com/app/id6755809339');
-                        }
+                      title: 'Rate us',
+                      onTap: () async {
+                        await showCustomRatingDialog();
+                        // if (Platform.isAndroid) {
+                        //   _launchURL(
+                        //     'https://play.google.com/store/apps/details?id=com.ai.story.generator.novel.script.writer.maker',
+                        //   );
+                        // } else {
+                        //   _launchURL('https://apps.apple.com/app/id6755809339');
+                        // }
                       },
                       image: AppImages.privacy_policy,
                     ),

@@ -1,0 +1,473 @@
+import 'dart:ui';
+
+import 'package:ai_story_writer/res/app_colors/app_colors.dart';
+import 'package:ai_story_writer/res/app_fonts/app_fonts.dart';
+import 'package:ai_story_writer/res/app_images/app_images.dart';
+import 'package:ai_story_writer/res/app_responsive/responsive_config.dart';
+import 'package:ai_story_writer/view/api_request_%20controller/api_request_controller.dart';
+import 'package:ai_story_writer/view/loading_sc/loading_Sc.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+
+class CharacterStoryInputScreen extends StatefulWidget {
+  const CharacterStoryInputScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CharacterStoryInputScreen> createState() =>
+      _CharacterStoryInputScreenState();
+}
+
+class _CharacterStoryInputScreenState extends State<CharacterStoryInputScreen> {
+  // Character Input Controllers
+  final TextEditingController characterNameController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
+  final TextEditingController personalityController = TextEditingController();
+  final TextEditingController roleController = TextEditingController();
+  final TextEditingController additionalDetailsController =
+      TextEditingController();
+
+  String selectedGenre = 'Fantasy';
+  String selectedOutputStyle = 'Detailed';
+
+  var apiController = Get.find<GeminiApiServiceController>();
+
+  final List<String> genres = [
+    'Fantasy',
+    'Sci-Fi',
+    'Romance',
+    'Horror',
+    'Comedy',
+    'Drama',
+    'Adventure',
+  ];
+
+  final List<String> outputStyles = ['Detailed', 'Brief', 'Elaborate'];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    characterNameController.dispose();
+    ageController.dispose();
+    personalityController.dispose();
+    roleController.dispose();
+    additionalDetailsController.dispose();
+    super.dispose();
+  }
+
+  void _navigateToLoadingScreen() {
+    Get.to(
+      () => AILoadingScreen(
+        toolName: "Character Story",
+        prompt: generateCharacterPrompt(),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Appcolor.scaffoldbgColor,
+      body: Stack(
+        children: [
+          SafeArea(
+            child: Column(
+              children: [
+                // Header
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12.0,
+                    vertical: 12.0,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        icon: const Icon(Icons.arrow_back, color: Colors.white),
+                      ),
+                      Text(
+                        'Character Story'.tr,
+                        style: TextStyle(
+                          fontFamily: AppFonts.inter,
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Scrollable content
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 8),
+                        _buildSectionTitle('Character Details'.tr),
+                        const SizedBox(height: 12),
+                        _buildInputField(
+                          controller: characterNameController,
+                          hintText: 'Character Name'.tr,
+                          icon: Icons.person,
+                        ),
+                        const SizedBox(height: 12),
+                        _buildInputField(
+                          controller: ageController,
+                          hintText: 'Age (e.g., 25, Young Adult, Ancient)'.tr,
+                          icon: Icons.cake,
+                        ),
+                        const SizedBox(height: 12),
+                        _buildInputField(
+                          controller: personalityController,
+                          hintText:
+                              'Personality (e.g., brave, shy, cunning)'.tr,
+                          icon: Icons.psychology,
+                          maxLines: 2,
+                        ),
+                        const SizedBox(height: 12),
+                        _buildInputField(
+                          controller: roleController,
+                          hintText: 'Role (e.g., Hero, Villain, Mentor)'.tr,
+                          icon: Icons.theater_comedy,
+                        ),
+                        const SizedBox(height: 12),
+                        _buildInputField(
+                          controller: additionalDetailsController,
+                          hintText: 'Additional Details (optional)'.tr,
+                          icon: Icons.info_outline,
+                          maxLines: 3,
+                        ),
+                        const SizedBox(height: 24),
+                        _buildGenreSelector(),
+                        const SizedBox(height: 24),
+                        _buildOutputStyleSelector(),
+                        const SizedBox(height: 32),
+                        _buildGenerateButton(),
+                        const SizedBox(height: 20),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // Blur effect
+          Positioned(
+            top: -100,
+            right: -10,
+            child: IgnorePointer(
+              child: ImageFiltered(
+                imageFilter: ImageFilter.blur(sigmaX: 40, sigmaY: 40),
+                child: Container(
+                  height: 300,
+                  width: 300,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [
+                        Appcolor.themeColor.withOpacity(0.20),
+                        Appcolor.themeColor.withOpacity(0.01),
+                      ],
+                      radius: 0.7,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Text(
+      title,
+      style: TextStyle(
+        color: Colors.white,
+        fontFamily: AppFonts.inter,
+        fontSize: 16,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
+  Widget _buildInputField({
+    required TextEditingController controller,
+    required String hintText,
+    required IconData icon,
+    int maxLines = 1,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Appcolor.tileBackground,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Color(0xff34343C), width: 1),
+      ),
+      child: TextField(
+        controller: controller,
+        maxLines: maxLines,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 16,
+          fontFamily: AppFonts.inter,
+        ),
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+          border: InputBorder.none,
+          contentPadding: EdgeInsets.all(16),
+          prefixIcon: Icon(icon, color: Appcolor.themeColor),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildGenreSelector() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSectionTitle('Select Genre'.tr),
+        const SizedBox(height: 12),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: genres.map((genre) {
+              bool isSelected = selectedGenre == genre;
+              return Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedGenre = genre;
+                    });
+                  },
+                  child: Container(
+                    height: SizeConfig.h(36),
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? Appcolor.themeColor
+                          : Appcolor.tileBackground,
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(color: Color(0xff34343C), width: 1),
+                    ),
+                    child: Center(
+                      child: Text(
+                        genre.tr,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: SizeConfig.sp(12),
+                          fontWeight: isSelected
+                              ? FontWeight.bold
+                              : FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildOutputStyleSelector() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildSectionTitle('Output Style'.tr),
+        const SizedBox(height: 12),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: outputStyles.map((style) {
+              bool isSelected = selectedOutputStyle == style;
+              return Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedOutputStyle = style;
+                    });
+                  },
+                  child: Container(
+                    height: SizeConfig.h(36),
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? Appcolor.themeColor
+                          : Appcolor.tileBackground,
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(color: Color(0xff34343C), width: 1),
+                    ),
+                    child: Center(
+                      child: Text(
+                        style.tr,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: SizeConfig.sp(12),
+                          fontWeight: isSelected
+                              ? FontWeight.bold
+                              : FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildGenerateButton() {
+    return GestureDetector(
+      onTap: () async {
+        if (characterNameController.text.isEmpty) {
+          Fluttertoast.showToast(
+            msg: "Please enter character name".tr,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+          return;
+        }
+        if (roleController.text.isEmpty) {
+          Fluttertoast.showToast(
+            msg: "Please enter character role".tr,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+          return;
+        }
+        FocusManager.instance.primaryFocus?.unfocus();
+
+        // Set the title for history
+        apiController.userInputController.text = characterNameController.text;
+        _navigateToLoadingScreen();
+      },
+      child: Container(
+        height: SizeConfig.h(50),
+        decoration: BoxDecoration(
+          color: Appcolor.themeColor,
+          borderRadius: BorderRadius.circular(50),
+        ),
+        width: double.infinity,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(AppImages.star, height: 20, color: Colors.white),
+            const SizedBox(width: 8),
+            Text(
+              'Generate Character'.tr,
+              style: TextStyle(
+                fontFamily: AppFonts.inter,
+                color: Colors.white,
+                fontSize: SizeConfig.sp(16),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String generateCharacterPrompt() {
+    String prompt =
+        '''
+CRITICAL INSTRUCTION - READ FIRST:
+1. Before writing anything, silently verify if the character details are valid
+2. If details are gibberish/invalid → ONLY respond with: "INVALID_INPUT: Please provide meaningful character details."
+3. If details are VALID → Go DIRECTLY to generating the character profile without any preamble.
+
+---
+
+You are an expert character development specialist. Create a comprehensive character profile for a $selectedGenre story based on the following details:
+
+CHARACTER INPUT:
+- Name: ${characterNameController.text}
+- Age: ${ageController.text.isNotEmpty ? ageController.text : 'Not specified'}
+- Personality: ${personalityController.text.isNotEmpty ? personalityController.text : 'Not specified'}
+- Role: ${roleController.text}
+- Additional Details: ${additionalDetailsController.text.isNotEmpty ? additionalDetailsController.text : 'None'}
+
+OUTPUT STYLE: $selectedOutputStyle
+
+REQUIRED OUTPUT FORMAT:
+
+## 🎭 CHARACTER PROFILE: ${characterNameController.text.toUpperCase()}
+
+### 📖 BACKSTORY
+Write a compelling backstory (${selectedOutputStyle == 'Brief'
+            ? '2-3 paragraphs'
+            : selectedOutputStyle == 'Detailed'
+            ? '4-5 paragraphs'
+            : '6-8 paragraphs'}) explaining:
+- Their origin and upbringing
+- Key events that shaped them
+- Their journey to their current role
+
+### 💪 STRENGTHS
+List 4-6 key strengths with brief explanations:
+- Physical abilities
+- Mental/Intellectual strengths
+- Social skills
+- Unique talents
+
+### ⚠️ WEAKNESSES
+List 3-5 weaknesses/flaws:
+- Character flaws
+- Vulnerabilities
+- Fears or limitations
+
+### 📈 CHARACTER ARC
+Describe the character's potential growth journey:
+- Starting point (who they are now)
+- Challenges they must face
+- Transformation (who they could become)
+- Ultimate goal or destiny
+
+### 💬 DIALOGUE STYLE
+Describe how this character speaks:
+- Vocabulary level and word choice
+- Tone and manner of speaking
+- Unique speech patterns
+- Cultural or regional influences
+
+### 🎯 CATCHPHRASES
+Provide 5-7 memorable catchphrases or signature lines this character would use:
+1. [Quote with context]
+2. [Quote with context]
+...
+
+### 🎨 SUMMARY
+A brief, memorable summary of this character in 2-3 sentences.
+
+Make the character feel alive, authentic, and memorable!
+''';
+
+    return prompt;
+  }
+}

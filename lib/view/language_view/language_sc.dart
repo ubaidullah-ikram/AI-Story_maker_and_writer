@@ -8,6 +8,7 @@ import 'package:ai_story_writer/res/app_responsive/responsive_config.dart';
 import 'package:ai_story_writer/services/admanage_service.dart';
 import 'package:ai_story_writer/services/remote_config.dart';
 import 'package:ai_story_writer/view/onboarding_view/onboarding_view.dart';
+import 'package:ai_story_writer/view_model/language_controller/locale_controller.dart';
 import 'package:ai_story_writer/view_model/pro_sccree_model/pro_Screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -82,12 +83,12 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
       "native": "(العربية)",
       "code": "ar",
     },
-    // {
-    //   "flag": AppImages.Hindi,
-    //   "nameKey": AppKeys.hindi,
-    //   "native": "(हिन्दी)",
-    //   "code": "hi",
-    // },
+    {
+      "flag": AppImages.Hindi,
+      "nameKey": AppKeys.hindi,
+      "native": "(हिन्दी)",
+      "code": "hi",
+    },
     // {
     //   "flag": AppImages.Japanese,
     //   "nameKey": AppKeys.japanese,
@@ -112,7 +113,8 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   void initState() {
     super.initState();
     // Sorting se pehle translation karo
-    loadSavedLanguage();
+    // loadSavedLanguage();
+    Get.find<LocalController>().loadSavedLanguage();
     if (!Get.find<ProScreenController>().isUserPro.value) {
       if (Platform.isIOS) {
         if (RemoteConfigService().banner_add_for_IOS) {
@@ -147,32 +149,32 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   }
 
   // Load saved language
-  Future<void> loadSavedLanguage() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? savedLanguage = prefs.getString('language_code');
-    if (savedLanguage != null) {
-      int index = languages.indexWhere((lang) => lang['code'] == savedLanguage);
-      if (index != -1) {
-        setState(() {
-          selectedIndex = index;
-        });
-      }
-    }
-  }
+  // Future<void> loadSavedLanguage() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   String? savedLanguage = prefs.getString('language_code');
+  //   if (savedLanguage != null) {
+  //     int index = languages.indexWhere((lang) => lang['code'] == savedLanguage);
+  //     if (index != -1) {
+  //       setState(() {
+  //         selectedIndex = index;
+  //       });
+  //     }
+  //   }
+  // }
 
-  // Save and change language
-  Future<void> changeLanguage(int index) async {
-    String languageCode = languages[index]['code']!;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('language_code', languageCode);
+  // // Save and change language
+  // Future<void> changeLanguage(int index) async {
+  //   String languageCode = languages[index]['code']!;
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   await prefs.setString('language_code', languageCode);
+  //   log('message ${languageCode}');
+  //   // Change locale
+  //   await Get.updateLocale(Locale(languageCode));
 
-    // Change locale
-    await Get.updateLocale(Locale(languageCode));
-
-    setState(() {
-      selectedIndex = index;
-    });
-  }
+  //   setState(() {
+  //     selectedIndex = index;
+  //   });
+  // }
 
   bool isDelayOff = false;
 
@@ -218,11 +220,16 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                       ? GestureDetector(
                           onTap: () async {
                             if (widget.isFromSetting) {
-                              await changeLanguage(selectedIndex);
+                              await Get.find<LocalController>().changeLanguage(
+                                selectedIndex,
+                                languages,
+                              );
                               Get.back();
                             } else {
                               if (selectedIndex >= 0) {
-                                await changeLanguage(selectedIndex);
+                                await Get.find<LocalController>()
+                                    .changeLanguage(selectedIndex, languages);
+
                                 Get.to(() => OnboardingScreen());
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -268,7 +275,12 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
 
                   return GestureDetector(
                     onTap: () async {
-                      await changeLanguage(index);
+                      selectedIndex = index;
+
+                      await Get.find<LocalController>().changeLanguage(
+                        index,
+                        languages,
+                      );
                     },
                     child: Container(
                       margin: const EdgeInsets.symmetric(vertical: 4),

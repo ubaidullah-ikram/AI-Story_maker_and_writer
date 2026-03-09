@@ -448,6 +448,77 @@ Write the complete, production-ready script now:
   * Emotional beats
   * Scene purpose in larger narrative''';
 
+      case 'Film Script':
+        return '''
+🎬 FILM SCRIPT FORMAT:
+- Professional screenplay format
+- Standard industry formatting:
+  * INT./EXT. LOCATION - DAY/NIGHT
+  * Character names centered and CAPITALIZED
+  * Parentheticals for delivery notes
+  * Action lines in present tense
+- Include:
+  * Scene numbers
+  * Camera directions (ANGLE ON, CLOSE UP, etc.)
+  * Transitions (CUT TO, DISSOLVE TO)
+  * Character introductions with brief descriptions
+  * Proper pagination and margins''';
+
+      case 'Stage Play':
+        return '''
+🎭 STAGE PLAY FORMAT:
+- Theatrical script format
+- Structure:
+  * ACT and SCENE divisions
+  * Set descriptions at start of each scene
+  * Character entrances and exits clearly marked
+  * Stage directions in brackets [Character crosses to window]
+- Include:
+  * UPSTAGE, DOWNSTAGE, STAGE LEFT/RIGHT directions
+  * Lighting cues: (LIGHTS DIM)
+  * Sound cues: (SOUND: Thunder)
+  * Costume and prop notes
+  * Pause and beat indicators''';
+
+      case 'Scene Breakdown':
+        return '''
+📋 SCENE BREAKDOWN FORMAT:
+- Detailed analysis format
+- For each scene include:
+  * Scene number and title
+  * INT/EXT and location
+  * Time of day
+  * Characters present
+  * Props needed
+  * Wardrobe requirements
+  * Vehicles/animals
+  * Special effects
+  * Stunts required
+  * Background extras
+  * Key dialogue moments
+  * Emotional tone
+  * Estimated duration
+- Production-ready format''';
+
+      case 'Dialogue Only':
+        return '''
+💬 DIALOGUE ONLY FORMAT:
+- Pure dialogue script
+- Format:
+  CHARACTER NAME:
+  "Dialogue line here"
+  
+  ANOTHER CHARACTER:
+  "Response here"
+- Include:
+  * Character emotions in (parentheses)
+  * Brief action beats in [brackets]
+  * Natural conversation flow
+  * No scene descriptions
+  * No camera directions
+  * Focus purely on spoken words
+- Perfect for table reads and voice recording''';
+
       default:
         return '''
 STANDARD SCRIPT FORMAT:
@@ -573,6 +644,33 @@ STANDARD SCRIPT FORMAT:
 - Race against time
 - Edge-of-seat moments
 - Unpredictable events''';
+
+      case 'Sci-Fi':
+        return '''
+🚀 SCI-FI GENRE ELEMENTS:
+- Futuristic or advanced technology
+- Scientific concepts explained simply
+- World-building details
+- Innovative gadgets and systems
+- Space, AI, or time travel themes
+- Thought-provoking concepts
+- Visual effects descriptions
+- Unique terminology/jargon
+- Balance of wonder and realism''';
+
+      case 'Kids':
+        return '''
+👶 KIDS GENRE ELEMENTS:
+- Age-appropriate content (5-12 years)
+- Simple, clear language
+- Fun and colorful descriptions
+- Educational elements woven in
+- Positive messages and morals
+- Engaging characters (animals, heroes)
+- Adventure and imagination focus
+- No scary or violent content
+- Short attention span friendly
+- Interactive moments''';
 
       default:
         return '''

@@ -6,6 +6,7 @@ import 'package:ai_story_writer/services/query_manager_services.dart';
 import 'package:ai_story_writer/services/remote_config.dart';
 import 'package:ai_story_writer/view/bottom_navbar_view/bottom_navBar.dart';
 import 'package:ai_story_writer/view/language_view/language_sc.dart';
+import 'package:ai_story_writer/view/onboarding_view/onboarding_view.dart';
 import 'package:ai_story_writer/view_model/pro_sccree_model/pro_Screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -192,7 +193,7 @@ class SplashController extends GetxController {
     if (islogin) {
       Get.off(() => BottomBarView());
     } else {
-      Get.off(() => LanguageSelectionScreen());
+      Get.off(() => OnboardingScreen());
     }
   }
 

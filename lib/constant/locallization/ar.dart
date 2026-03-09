@@ -95,13 +95,7 @@ Map<String, String> ar = {
   "Unlock All Styles & Tones": "فتح جميع الأنماط والنبرات",
   "No Word/Length Limit": "بدون حد للكلمات/الطول",
   "Remove All Ads": "إزالة جميع الإعلانات",
-  "3 days free": "3 أيام مجاني",
   "Restore": "استعادة",
-  "YouTube Video": "فيديو YouTube",
-  "Podcast": "بودكاست",
-
-  "AI Story Writer": "كاتب قصص ذكي",
-  "Reel": "ريل",
   "Smart Scripts": "نصوص ذكية",
   "From concept to script—fast, easy, and creative":
       "من الفكرة إلى النص—بسرعة وسهولة وإبداع",
@@ -128,9 +122,6 @@ Map<String, String> ar = {
   "University": "الجامعة",
   "Masters": "الماجستير",
   "Custom": "مخصص",
-  "YouTube Video": "فيديو يوتيوب",
-  "Podcast": "بودكاست",
-  "Reel": "ريل",
   "Tiktok Video": "فيديو تيك توك",
   "Movie": "فيلم",
   "Expository": "توضيحي",
@@ -164,4 +155,189 @@ Map<String, String> ar = {
   AppKeys.russian: "الروسية",
   AppKeys.spanish: "الإسبانية",
   AppKeys.turkish: "التركية",
+
+  // New strings for download & actions
+  'Download As': 'تنزيل كـ',
+  'Choose format to download': 'اختر تنسيق التنزيل',
+  'Text File': 'ملف نصي',
+  'PDF File': 'ملف PDF',
+  'Copy': 'نسخ',
+  'Share': 'مشاركة',
+  'Text copied!': 'تم نسخ النص!',
+  'PDF saved successfully!': 'تم حفظ PDF بنجاح!',
+  'Error creating PDF: Please try again':
+      'خطأ في إنشاء PDF: يرجى المحاولة مرة أخرى',
+
+  // Character Story Tool
+  'Character Story': 'قصة الشخصية',
+  'Character Details': 'تفاصيل الشخصية',
+  'Character Name': 'اسم الشخصية',
+  'Age (e.g., 25, Young Adult, Ancient)': 'العمر (مثلاً: 25، شاب، قديم)',
+  'Personality (e.g., brave, shy, cunning)':
+      'الشخصية (مثلاً: شجاع، خجول، ماكر)',
+  'Role (e.g., Hero, Villain, Mentor)': 'الدور (مثلاً: بطل، شرير، مرشد)',
+  'Additional Details (optional)': 'تفاصيل إضافية (اختياري)',
+  'Output Style': 'نمط الإخراج',
+  'Generate Character': 'إنشاء الشخصية',
+  'Please enter character name': 'يرجى إدخال اسم الشخصية',
+  'Please enter character role': 'يرجى إدخال دور الشخصية',
+  'Detailed': 'مفصل',
+  'Brief': 'موجز',
+  'Elaborate': 'مفصل جداً',
+
+  // Home Screen Tool Cards
+  'Create detailed character backstories': 'إنشاء قصص خلفية مفصلة للشخصيات',
+  'Create Character': 'إنشاء شخصية',
+  'Transform and improve your existing stories': 'تحويل وتحسين قصصك الحالية',
+  'Rewrite Now': 'أعد الكتابة الآن',
+  'Generate catchy titles for your stories': 'إنشاء عناوين جذابة لقصصك',
+  'Generate Titles': 'إنشاء عناوين',
+
+  // Rewrite Story Tool
+  'Rewrite Story': 'إعادة كتابة القصة',
+  'Paste Your Story': 'الصق قصتك',
+  'Paste your story here to rewrite...': 'الصق قصتك هنا لإعادة كتابتها...',
+  'Select Tone': 'اختر النبرة',
+  'Rewrite Style': 'نمط إعادة الكتابة',
+  'Output Length': 'طول الإخراج',
+  'Please paste your story': 'يرجى لصق قصتك',
+  'Story is too short. Please provide more content.':
+      'القصة قصيرة جداً. يرجى تقديم المزيد من المحتوى.',
+  // Tone options
+  'Same': 'نفس',
+  'More Dramatic': 'أكثر دراماتيكية',
+  'More Humorous': 'أكثر فكاهة',
+  'More Emotional': 'أكثر عاطفية',
+  'More Suspenseful': 'أكثر تشويقاً',
+  'Lighter': 'أخف',
+  // Style options
+  'Improved': 'محسّن',
+  'Simplified': 'مبسط',
+  'More Descriptive': 'أكثر وصفاً',
+  'More Dialogue': 'مزيد من الحوار',
+  'More Action': 'مزيد من الأحداث',
+  'Literary': 'أدبي',
+  // Length options
+  'Shorter': 'أقصر',
+  'Longer': 'أطول',
+  'Much Longer': 'أطول بكثير',
+
+  // Title Generator Tool
+  'Title Generator': 'مولد العناوين',
+  'Story/Book Topic': 'موضوع القصة/الكتاب',
+  'Keywords (Optional)': 'الكلمات المفتاحية (اختياري)',
+  'Describe your story topic or theme...': 'صف موضوع أو سمة قصتك...',
+  'e.g., magic, dragon, adventure': 'مثلاً: سحر، تنين، مغامرة',
+  'Title For': 'عنوان لـ',
+  'Title Style': 'نمط العنوان',
+  'Number of Titles': 'عدد العناوين',
+  // Type options
+  'Book': 'كتاب',
+  'Short Story': 'قصة قصيرة',
+  'Novel': 'رواية',
+  'Chapter': 'فصل',
+  'Series': 'سلسلة',
+  // Title Style options
+  'Simple': 'بسيط',
+  'Mysterious': 'غامض',
+  'Dramatic': 'درامي',
+  'Catchy': 'جذاب',
+  'Poetic': 'شعري',
+  // Genre options
+  'Kids': 'أطفال',
+
+  // Blog Writer Tool
+  'Blog Writer': 'كاتب المدونات',
+  'Blog Topic': 'موضوع المدونة',
+  'Target Keywords': 'الكلمات المفتاحية المستهدفة',
+  'Target Audience (Optional)': 'الجمهور المستهدف (اختياري)',
+  'Enter your blog topic or title...': 'أدخل موضوع أو عنوان مدونتك...',
+  'e.g., AI writing, content marketing, SEO tips':
+      'مثلاً: كتابة الذكاء الاصطناعي، تسويق المحتوى، نصائح SEO',
+  'e.g., small business owners, bloggers':
+      'مثلاً: أصحاب الأعمال الصغيرة، المدونين',
+  'Article Type': 'نوع المقال',
+  'Writing Tone': 'نبرة الكتابة',
+  'Article Length': 'طول المقال',
+  'SEO Options': 'خيارات SEO',
+  'Include Meta Description': 'تضمين الوصف التعريفي',
+  'Include Keyword Suggestions': 'تضمين اقتراحات الكلمات المفتاحية',
+  'Include FAQs Section': 'تضمين قسم الأسئلة الشائعة',
+  'Please enter a blog topic': 'يرجى إدخال موضوع المدونة',
+  'Generate Blog': 'إنشاء مدونة',
+  'SEO optimized articles with keywords':
+      'مقالات محسنة لـ SEO مع كلمات مفتاحية',
+  'Write Blog': 'كتابة مدونة',
+  // Article Types
+  'SEO Article': 'مقال SEO',
+  'How-To Guide': 'دليل إرشادي',
+  'Listicle': 'مقال قائمة',
+  'Product Review': 'مراجعة منتج',
+  'Opinion Piece': 'مقال رأي',
+  'News Article': 'مقال إخباري',
+  // Blog Tones
+  'Professional': 'احترافي',
+  'Casual': 'غير رسمي',
+  'Informative': 'إعلامي',
+  'Persuasive': 'إقناعي',
+  'Friendly': 'ودود',
+  'Authoritative': 'موثوق',
+  // Blog Lengths
+  'Short (500-800)': 'قصير (500-800)',
+  'Medium (800-1500)': 'متوسط (800-1500)',
+  'Long (1500-2500)': 'طويل (1500-2500)',
+  'Detailed (2500+)': 'مفصل (2500+)',
+
+  // YouTube Script Tool
+  'YouTube Script': 'سكريبت يوتيوب',
+  'Video Topic': 'موضوع الفيديو',
+  'Key Points (Optional)': 'النقاط الرئيسية (اختياري)',
+  'What is your video about?': 'ما موضوع الفيديو الخاص بك؟',
+  'List key points to cover (optional)...': 'اذكر النقاط الرئيسية (اختياري)...',
+  'Video Duration': 'مدة الفيديو',
+  'Script Options': 'خيارات السكريبت',
+  'Include Hook/Intro': 'تضمين مقدمة جذابة',
+  'Include Call-to-Action': 'تضمين دعوة للعمل',
+  'Include Timestamps': 'تضمين الطوابع الزمنية',
+  'Please enter a video topic': 'يرجى إدخال موضوع الفيديو',
+  'Generate Script': 'إنشاء سكريبت',
+  'Create scripts for videos & reels': 'إنشاء سكريبتات للفيديوهات والريلز',
+  'Create Script': 'إنشاء سكريبت',
+  // Script Types
+  'Storytime': 'وقت القصة',
+  'Documentary': 'وثائقي',
+  'Short Reel': 'ريل قصير',
+  'Educational': 'تعليمي',
+  'Review': 'مراجعة',
+  'Tutorial': 'درس تعليمي',
+  // Durations
+  '< 1 min (Shorts)': '< 1 دقيقة (شورتس)',
+  '1-3 min': '1-3 دقائق',
+  '5-10 min': '5-10 دقائق',
+  '10-20 min': '10-20 دقيقة',
+  '20+ min': '20+ دقيقة',
+  // Script Tones
+  'Engaging': 'جذاب',
+  'Energetic': 'حيوي',
+  'Calm': 'هادئ',
+  'Funny': 'مضحك',
+
+  // Story Generator - Styles
+  'Inspired': 'مُلهَم',
+
+  // Script Writer - Script Tones (formats)
+  'Film Script': 'سيناريو فيلم',
+  'Stage Play': 'مسرحية',
+  'Scene Breakdown': 'تحليل المشهد',
+  'Dialogue Only': 'حوار فقط',
+
+  // Ad & UI
+  'Ad loading please wait..': 'جاري تحميل الإعلان، يرجى الانتظار..',
+
+  // Word Counter & Reading Time
+  'Words:': 'الكلمات:',
+  'Reading:': 'القراءة:',
+
+  // Missing strings from hi.dart
+  'Adventure': 'مغامرة',
 };

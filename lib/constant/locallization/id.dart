@@ -153,15 +153,202 @@ Map<String, String> id = {
   "Unlock All Styles & Tones": "Buka Semua Gaya dan Nada",
   "No Word/Length Limit": "Tanpa Batas Kata/Panjang",
   "Remove All Ads": "Hapus Semua Iklan",
-  "3 days free": "3 hari gratis",
   "Restore": "Pulihkan",
-  "YouTube Video": "Video YouTube",
-  "Podcast": "Podcast",
-  "Reel": "Reel",
   AppKeys.korean: "Korea",
   AppKeys.portuguese: "Portugis",
   AppKeys.russian: "Rusia",
   AppKeys.spanish: "Spanyol",
   "AI Story Writer": "Penulis Cerita AI",
   AppKeys.turkish: "Turki",
+
+  // New strings for download & actions
+  'Download As': 'Unduh Sebagai',
+  'Choose format to download': 'Pilih format untuk diunduh',
+  'Text File': 'File Teks',
+  'PDF File': 'File PDF',
+  'Copy': 'Salin',
+  'Share': 'Bagikan',
+  'Text copied!': 'Teks disalin!',
+  'PDF saved successfully!': 'PDF berhasil disimpan!',
+  'Error creating PDF: Please try again':
+      'Kesalahan membuat PDF: Silakan coba lagi',
+
+  // Character Story Tool
+  'Character Story': 'Cerita Karakter',
+  'Character Details': 'Detail Karakter',
+  'Character Name': 'Nama Karakter',
+  'Age (e.g., 25, Young Adult, Ancient)': 'Usia (mis. 25, Dewasa Muda, Kuno)',
+  'Personality (e.g., brave, shy, cunning)':
+      'Kepribadian (mis. berani, pemalu, licik)',
+  'Role (e.g., Hero, Villain, Mentor)':
+      'Peran (mis. Pahlawan, Penjahat, Mentor)',
+  'Additional Details (optional)': 'Detail Tambahan (opsional)',
+  'Output Style': 'Gaya Keluaran',
+  'Generate Character': 'Buat Karakter',
+  'Please enter character name': 'Silakan masukkan nama karakter',
+  'Please enter character role': 'Silakan masukkan peran karakter',
+  'Detailed': 'Detail',
+  'Brief': 'Singkat',
+  'Elaborate': 'Terperinci',
+
+  // Home Screen Tool Cards
+  'Create detailed character backstories':
+      'Buat cerita latar belakang karakter yang detail',
+  'Create Character': 'Buat Karakter',
+  'Transform and improve your existing stories':
+      'Transformasi dan perbaiki cerita Anda',
+  'Rewrite Now': 'Tulis Ulang Sekarang',
+  'Generate catchy titles for your stories':
+      'Buat judul menarik untuk cerita Anda',
+  'Generate Titles': 'Buat Judul',
+
+  // Rewrite Story Tool
+  'Rewrite Story': 'Tulis Ulang Cerita',
+  'Paste Your Story': 'Tempel Cerita Anda',
+  'Paste your story here to rewrite...':
+      'Tempel cerita Anda di sini untuk ditulis ulang...',
+  'Select Tone': 'Pilih Nada',
+  'Rewrite Style': 'Gaya Penulisan Ulang',
+  'Output Length': 'Panjang Output',
+  'Please paste your story': 'Silakan tempel cerita Anda',
+  'Story is too short. Please provide more content.':
+      'Cerita terlalu pendek. Berikan lebih banyak konten.',
+  // Tone options
+  'Same': 'Sama',
+  'More Dramatic': 'Lebih Dramatis',
+  'More Humorous': 'Lebih Lucu',
+  'More Emotional': 'Lebih Emosional',
+  'More Suspenseful': 'Lebih Menegangkan',
+  'Lighter': 'Lebih Ringan',
+  // Style options
+  'Improved': 'Ditingkatkan',
+  'Simplified': 'Disederhanakan',
+  'More Descriptive': 'Lebih Deskriptif',
+  'More Dialogue': 'Lebih Banyak Dialog',
+  'More Action': 'Lebih Banyak Aksi',
+  'Literary': 'Sastra',
+  // Length options
+  'Shorter': 'Lebih Pendek',
+  'Longer': 'Lebih Panjang',
+  'Much Longer': 'Jauh Lebih Panjang',
+
+  // Title Generator Tool
+  'Title Generator': 'Generator Judul',
+  'Story/Book Topic': 'Topik Cerita/Buku',
+  'Keywords (Optional)': 'Kata Kunci (Opsional)',
+  'Describe your story topic or theme...':
+      'Jelaskan topik atau tema cerita Anda...',
+  'e.g., magic, dragon, adventure': 'mis., sihir, naga, petualangan',
+  'Title For': 'Judul Untuk',
+  'Title Style': 'Gaya Judul',
+  'Number of Titles': 'Jumlah Judul',
+  // Type options
+  'Book': 'Buku',
+  'Short Story': 'Cerita Pendek',
+  'Novel': 'Novel',
+  'Chapter': 'Bab',
+  'Series': 'Seri',
+  // Title Style options
+  'Simple': 'Sederhana',
+  'Mysterious': 'Misterius',
+  'Dramatic': 'Dramatis',
+  'Catchy': 'Menarik',
+  'Poetic': 'Puitis',
+  // Genre options
+  'Kids': 'Anak-anak',
+
+  // Blog Writer Tool
+  'Blog Writer': 'Penulis Blog',
+  'Blog Topic': 'Topik Blog',
+  'Target Keywords': 'Kata Kunci Target',
+  'Target Audience (Optional)': 'Target Audiens (Opsional)',
+  'Enter your blog topic or title...': 'Masukkan topik atau judul blog Anda...',
+  'e.g., AI writing, content marketing, SEO tips':
+      'mis., penulisan AI, pemasaran konten, tips SEO',
+  'e.g., small business owners, bloggers': 'mis., pemilik usaha kecil, blogger',
+  'Article Type': 'Jenis Artikel',
+  'Writing Tone': 'Nada Penulisan',
+  'Article Length': 'Panjang Artikel',
+  'SEO Options': 'Opsi SEO',
+  'Include Meta Description': 'Sertakan Deskripsi Meta',
+  'Include Keyword Suggestions': 'Sertakan Saran Kata Kunci',
+  'Include FAQs Section': 'Sertakan Bagian FAQ',
+  'Please enter a blog topic': 'Silakan masukkan topik blog',
+  'Generate Blog': 'Buat Blog',
+  'SEO optimized articles with keywords':
+      'Artikel yang dioptimalkan SEO dengan kata kunci',
+  'Write Blog': 'Tulis Blog',
+  // Article Types
+  'SEO Article': 'Artikel SEO',
+  'How-To Guide': 'Panduan Cara',
+  'Listicle': 'Artikel Daftar',
+  'Product Review': 'Ulasan Produk',
+  'Opinion Piece': 'Artikel Opini',
+  'News Article': 'Artikel Berita',
+  // Blog Tones
+  'Professional': 'Profesional',
+  'Casual': 'Santai',
+  'Informative': 'Informatif',
+  'Persuasive': 'Persuasif',
+  'Friendly': 'Ramah',
+  'Authoritative': 'Otoritatif',
+  // Blog Lengths
+  'Short (500-800)': 'Pendek (500-800)',
+  'Medium (800-1500)': 'Sedang (800-1500)',
+  'Long (1500-2500)': 'Panjang (1500-2500)',
+  'Detailed (2500+)': 'Detail (2500+)',
+
+  // YouTube Script Tool
+  'YouTube Script': 'Skrip YouTube',
+  'Video Topic': 'Topik Video',
+  'Key Points (Optional)': 'Poin Kunci (Opsional)',
+  'What is your video about?': 'Tentang apa video Anda?',
+  'List key points to cover (optional)...':
+      'Daftar poin kunci yang akan dibahas (opsional)...',
+  'Video Duration': 'Durasi Video',
+  'Script Options': 'Opsi Skrip',
+  'Include Hook/Intro': 'Sertakan Hook/Intro',
+  'Include Call-to-Action': 'Sertakan Ajakan Bertindak',
+  'Include Timestamps': 'Sertakan Stempel Waktu',
+  'Please enter a video topic': 'Silakan masukkan topik video',
+  'Generate Script': 'Buat Skrip',
+  'Create scripts for videos & reels': 'Buat skrip untuk video & reel',
+  'Create Script': 'Buat Skrip',
+  // Script Types
+  'Storytime': 'Waktu Cerita',
+  'Documentary': 'Dokumenter',
+  'Short Reel': 'Reel Pendek',
+  'Educational': 'Edukatif',
+  'Review': 'Ulasan',
+  'Tutorial': 'Tutorial',
+  // Durations
+  '< 1 min (Shorts)': '< 1 menit (Shorts)',
+  '1-3 min': '1-3 menit',
+  '5-10 min': '5-10 menit',
+  '10-20 min': '10-20 menit',
+  '20+ min': '20+ menit',
+  // Script Tones
+  'Engaging': 'Menarik',
+  'Energetic': 'Energik',
+  'Calm': 'Tenang',
+  'Funny': 'Lucu',
+
+  // Story Generator - Styles
+  'Inspired': 'Terinspirasi',
+
+  // Script Writer - Script Tones (formats)
+  'Film Script': 'Naskah Film',
+  'Stage Play': 'Drama Panggung',
+  'Scene Breakdown': 'Rincian Adegan',
+  'Dialogue Only': 'Hanya Dialog',
+
+  // Ad & UI
+  'Ad loading please wait..': 'Iklan sedang dimuat, mohon tunggu..',
+
+  // Word Counter & Reading Time
+  'Words:': 'Kata:',
+  'Reading:': 'Membaca:',
+
+  // Missing strings from hi.dart
+  'Adventure': 'Petualangan',
 };

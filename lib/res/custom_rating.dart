@@ -162,7 +162,7 @@ class _CustomRatingDialogState extends State<CustomRatingDialog> {
                       _selectedRating >= starIndex
                           ? Icons.star_rounded
                           : Icons.star_outline_rounded,
-                      size: 44,
+                      size: 40,
                       color: _selectedRating >= starIndex
                           ? Appcolor.themeColor
                           : Colors.grey.shade400,

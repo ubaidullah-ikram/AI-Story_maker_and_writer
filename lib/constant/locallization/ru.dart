@@ -151,11 +151,7 @@ Map<String, String> ru = {
   "Unlock All Styles & Tones": "Разблокировать все стили и тоны",
   "No Word/Length Limit": "Без ограничений по словам/длине",
   "Remove All Ads": "Удалить все объявления",
-  "3 days free": "3 дня бесплатно",
   "Restore": "Восстановить",
-  "YouTube Video": "Видео YouTube",
-  "Podcast": "Подкаст",
-  "Reel": "Рил",
   AppKeys.indonesian: "Индонезийский",
   AppKeys.japanese: "Японский",
   AppKeys.korean: "Корейский",
@@ -164,4 +160,195 @@ Map<String, String> ru = {
   AppKeys.russian: "Русский",
   AppKeys.spanish: "Испанский",
   AppKeys.turkish: "Турецкий",
+
+  // New strings for download & actions
+  'Download As': 'Скачать как',
+  'Choose format to download': 'Выберите формат для скачивания',
+  'Text File': 'Текстовый файл',
+  'PDF File': 'PDF файл',
+  'Copy': 'Копировать',
+  'Share': 'Поделиться',
+  'Text copied!': 'Текст скопирован!',
+  'PDF saved successfully!': 'PDF успешно сохранен!',
+  'Error creating PDF: Please try again':
+      'Ошибка создания PDF: Пожалуйста, попробуйте еще раз',
+
+  // Character Story Tool
+  'Character Story': 'История Персонажа',
+  'Character Details': 'Детали Персонажа',
+  'Character Name': 'Имя Персонажа',
+  'Age (e.g., 25, Young Adult, Ancient)':
+      'Возраст (напр. 25, Молодой взрослый, Древний)',
+  'Personality (e.g., brave, shy, cunning)':
+      'Личность (напр. храбрый, застенчивый, хитрый)',
+  'Role (e.g., Hero, Villain, Mentor)': 'Роль (напр. Герой, Злодей, Наставник)',
+  'Additional Details (optional)': 'Дополнительные Детали (необязательно)',
+  'Output Style': 'Стиль Вывода',
+  'Generate Character': 'Создать Персонажа',
+  'Please enter character name': 'Пожалуйста, введите имя персонажа',
+  'Please enter character role': 'Пожалуйста, введите роль персонажа',
+  'Detailed': 'Подробный',
+  'Brief': 'Краткий',
+  'Elaborate': 'Развернутый',
+
+  // Home Screen Tool Cards
+  'Create detailed character backstories':
+      'Создайте детальные предыстории персонажей',
+  'Create Character': 'Создать Персонажа',
+  'Transform and improve your existing stories':
+      'Преобразуйте и улучшите ваши истории',
+  'Rewrite Now': 'Переписать Сейчас',
+  'Generate catchy titles for your stories':
+      'Создайте привлекательные заголовки для ваших историй',
+  'Generate Titles': 'Создать Заголовки',
+
+  // Rewrite Story Tool
+  'Rewrite Story': 'Переписать Историю',
+  'Paste Your Story': 'Вставьте Вашу Историю',
+  'Paste your story here to rewrite...':
+      'Вставьте вашу историю сюда для переписывания...',
+  'Select Tone': 'Выберите Тон',
+  'Rewrite Style': 'Стиль Переписывания',
+  'Output Length': 'Длина Вывода',
+  'Please paste your story': 'Пожалуйста, вставьте вашу историю',
+  'Story is too short. Please provide more content.':
+      'История слишком короткая. Пожалуйста, добавьте больше контента.',
+  // Tone options
+  'Same': 'Тот же',
+  'More Dramatic': 'Более Драматичный',
+  'More Humorous': 'Более Юмористический',
+  'More Emotional': 'Более Эмоциональный',
+  'More Suspenseful': 'Более Напряженный',
+  'Lighter': 'Легче',
+  // Style options
+  'Improved': 'Улучшенный',
+  'Simplified': 'Упрощенный',
+  'More Descriptive': 'Более Описательный',
+  'More Dialogue': 'Больше Диалога',
+  'More Action': 'Больше Действия',
+  'Literary': 'Литературный',
+  // Length options
+  'Shorter': 'Короче',
+  'Longer': 'Длиннее',
+  'Much Longer': 'Намного Длиннее',
+
+  // Title Generator Tool
+  'Title Generator': 'Генератор Заголовков',
+  'Story/Book Topic': 'Тема Истории/Книги',
+  'Keywords (Optional)': 'Ключевые Слова (Необязательно)',
+  'Describe your story topic or theme...': 'Опишите тему вашей истории...',
+  'e.g., magic, dragon, adventure': 'напр., магия, дракон, приключение',
+  'Title For': 'Заголовок Для',
+  'Title Style': 'Стиль Заголовка',
+  'Number of Titles': 'Количество Заголовков',
+  // Type options
+  'Book': 'Книга',
+  'Short Story': 'Рассказ',
+  'Novel': 'Роман',
+  'Chapter': 'Глава',
+  'Series': 'Серия',
+  // Title Style options
+  'Simple': 'Простой',
+  'Mysterious': 'Таинственный',
+  'Dramatic': 'Драматичный',
+  'Catchy': 'Запоминающийся',
+  'Poetic': 'Поэтичный',
+  // Genre options
+  'Kids': 'Детские',
+
+  // Blog Writer Tool
+  'Blog Writer': 'Автор Блога',
+  'Blog Topic': 'Тема Блога',
+  'Target Keywords': 'Целевые Ключевые Слова',
+  'Target Audience (Optional)': 'Целевая Аудитория (Необязательно)',
+  'Enter your blog topic or title...': 'Введите тему или заголовок блога...',
+  'e.g., AI writing, content marketing, SEO tips':
+      'напр., ИИ-письмо, контент-маркетинг, SEO-советы',
+  'e.g., small business owners, bloggers':
+      'напр., владельцы малого бизнеса, блогеры',
+  'Article Type': 'Тип Статьи',
+  'Writing Tone': 'Тон Письма',
+  'Article Length': 'Длина Статьи',
+  'SEO Options': 'SEO Опции',
+  'Include Meta Description': 'Включить Мета Описание',
+  'Include Keyword Suggestions': 'Включить Предложения Ключевых Слов',
+  'Include FAQs Section': 'Включить Раздел Вопросов',
+  'Please enter a blog topic': 'Пожалуйста, введите тему блога',
+  'Generate Blog': 'Создать Блог',
+  'SEO optimized articles with keywords':
+      'SEO-оптимизированные статьи с ключевыми словами',
+  'Write Blog': 'Написать Блог',
+  // Article Types
+  'SEO Article': 'SEO Статья',
+  'How-To Guide': 'Руководство',
+  'Listicle': 'Статья-список',
+  'Product Review': 'Обзор Продукта',
+  'Opinion Piece': 'Мнение',
+  'News Article': 'Новостная Статья',
+  // Blog Tones
+  'Professional': 'Профессиональный',
+  'Casual': 'Непринужденный',
+  'Informative': 'Информативный',
+  'Persuasive': 'Убедительный',
+  'Friendly': 'Дружелюбный',
+  'Authoritative': 'Авторитетный',
+  // Blog Lengths
+  'Short (500-800)': 'Короткий (500-800)',
+  'Medium (800-1500)': 'Средний (800-1500)',
+  'Long (1500-2500)': 'Длинный (1500-2500)',
+  'Detailed (2500+)': 'Подробный (2500+)',
+
+  // YouTube Script Tool
+  'YouTube Script': 'YouTube Скрипт',
+  'Video Topic': 'Тема Видео',
+  'Key Points (Optional)': 'Ключевые Моменты (Необязательно)',
+  'What is your video about?': 'О чем ваше видео?',
+  'List key points to cover (optional)...':
+      'Перечислите ключевые моменты (необязательно)...',
+  'Video Duration': 'Продолжительность Видео',
+  'Script Options': 'Опции Скрипта',
+  'Include Hook/Intro': 'Включить Хук/Вступление',
+  'Include Call-to-Action': 'Включить Призыв к Действию',
+  'Include Timestamps': 'Включить Временные Метки',
+  'Please enter a video topic': 'Пожалуйста, введите тему видео',
+  'Generate Script': 'Создать Скрипт',
+  'Create scripts for videos & reels': 'Создавайте скрипты для видео и рилсов',
+  'Create Script': 'Создать Скрипт',
+  // Script Types
+  'Storytime': 'Время Историй',
+  'Documentary': 'Документальный',
+  'Short Reel': 'Короткий Рилс',
+  'Educational': 'Образовательный',
+  'Review': 'Обзор',
+  'Tutorial': 'Урок',
+  // Durations
+  '< 1 min (Shorts)': '< 1 мин (Шортс)',
+  '1-3 min': '1-3 мин',
+  '5-10 min': '5-10 мин',
+  '10-20 min': '10-20 мин',
+  '20+ min': '20+ мин',
+  // Script Tones
+  'Engaging': 'Увлекательный',
+  'Energetic': 'Энергичный',
+  'Calm': 'Спокойный',
+  'Funny': 'Смешной',
+
+  // Story Generator - Styles
+  'Inspired': 'Вдохновлённый',
+
+  // Script Writer - Script Tones (formats)
+  'Film Script': 'Сценарий Фильма',
+  'Stage Play': 'Театральная Пьеса',
+  'Scene Breakdown': 'Разбор Сцены',
+  'Dialogue Only': 'Только Диалог',
+
+  // Ad & UI
+  'Ad loading please wait..': 'Загрузка рекламы, пожалуйста подождите..',
+
+  // Word Counter & Reading Time
+  'Words:': 'Слова:',
+  'Reading:': 'Чтение:',
+
+  // Missing strings from hi.dart
+  'Adventure': 'Приключение',
 };

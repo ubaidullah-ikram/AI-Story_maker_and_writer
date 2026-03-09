@@ -13,7 +13,7 @@ class AppImages {
   static const Spain = "${baseUrl}Spain.png";
   static const Persion = "${baseUrl}Persion.png";
   static const China = "${baseUrl}China.png";
-  static const history_empty = "${baseUrl}history_empty.png"; 
+  static const history_empty = "${baseUrl}history_empty.png";
   static const Russia = "${baseUrl}Russia.png";
   static const German = "${baseUrl}German.png";
   static const France = "${baseUrl}France.png";
@@ -44,10 +44,10 @@ class AppImages {
   static const diamond_icon = "${baseUrl}diamond_icon.png";
   static const language = "${baseUrl}language.png";
   static const privcay_icon = "${baseUrl}privcay_icon.png";
-  static const pro_sc_icon = "${baseUrl}pro_sc_icon.png"; 
+  static const pro_sc_icon = "${baseUrl}pro_sc_icon.png";
   static const story_writter_icon = "${baseUrl}story_writter_icon.png";
-  static const rate_us_icon = "${baseUrl}star.png";  
-  static const no_stories = "${baseUrl}no_stories.png"; 
+  static const rate_us_icon = "${baseUrl}star.png";
+  static const no_stories = "${baseUrl}no_stories.png";
   static const privacy_policy = "${baseUrl}privacy_policy.png";
   static const terms_icon = "${baseUrl}terms_condition.png";
   static const logout_icon = "${baseUrl}logout_icon.png";
@@ -60,9 +60,25 @@ class AppImages {
   static const story_writerIcon = "${baseUrl}story_writerIcon.png";
   static const essay_writer = "${baseUrl}essay_writer.png";
   static const script_generator = "${baseUrl}script_generator.png";
+  static const Blog_write = "${baseUrl}Blog_write.png";
+  static const Rewrite_story = "${baseUrl}Rewrite_story.png";
+  static const title = "${baseUrl}title.png";
+  static const Your_own_character = "${baseUrl}Your_own_character.png";
+  static const Youtube_Script = "${baseUrl}Youtube_Script.png";
   static const star = "${baseUrl}star.png";
 
-  // gif. /Users/macbook/Downloads/script_generator.png  
+  // New Story Features - Module 1
+  // static const rewrite_story = "${baseUrl}essay_writer.png";
+  // static const character_story = "${baseUrl}essay_writer.png";
+  // static const title_generator = "${baseUrl}essay_writer.png";
+
+  // // Blog Writer - Module 2
+  // static const blog_writer = "${baseUrl}essay_writer.png";
+
+  // // YouTube Script Generator - Module 3
+  // static const youtube_script = "${baseUrl}essay_writer.png";
+
+  // gif. /Users/macbook/Downloads/script_generator.png
   // static const homeScgif = "assets/gif/home_sc_gif.gif";
   // static const homeScgif2 = "assets/gif/home_sc_gif2.gif";
   static const newloading_gif = "assets/gif/newloading_gif.gif";

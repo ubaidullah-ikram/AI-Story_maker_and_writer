@@ -81,7 +81,6 @@ Map<String, String> fr = {
   "Unlock All Styles & Tones": "Débloquez tous les styles et tons",
   "No Word/Length Limit": "Sans limite de mots/longueur",
   "Remove All Ads": "Supprimer toutes les publicités",
-  "3 days free": "3 jours gratuits",
   "Restore": "Restaurer",
   "YouTube Video": "Vidéo YouTube",
   "Podcast": "Podcast",
@@ -129,9 +128,6 @@ Map<String, String> fr = {
   "University": "Université",
   "Masters": "Maîtrise",
   "Custom": "Personnalisé",
-  "YouTube Video": "Vidéo YouTube",
-  "Podcast": "Podcast",
-  "Reel": "Reel",
   "Tiktok Video": "Vidéo Tiktok",
   "Movie": "Film",
   "Expository": "Explicatif",
@@ -165,4 +161,197 @@ Map<String, String> fr = {
   AppKeys.russian: "Russe",
   AppKeys.spanish: "Espagnol",
   AppKeys.turkish: "Turc",
+
+  // New strings for download & actions
+  'Download As': 'Télécharger en tant que',
+  'Choose format to download': 'Choisir le format de téléchargement',
+  'Text File': 'Fichier texte',
+  'PDF File': 'Fichier PDF',
+  'Copy': 'Copier',
+  'Share': 'Partager',
+  'Text copied!': 'Texte copié!',
+  'PDF saved successfully!': 'PDF enregistré avec succès!',
+  'Error creating PDF: Please try again':
+      'Erreur lors de la création du PDF: Veuillez réessayer',
+
+  // Character Story Tool
+  'Character Story': 'Histoire du Personnage',
+  'Character Details': 'Détails du Personnage',
+  'Character Name': 'Nom du Personnage',
+  'Age (e.g., 25, Young Adult, Ancient)': 'Âge (ex. 25, Jeune Adulte, Ancien)',
+  'Personality (e.g., brave, shy, cunning)':
+      'Personnalité (ex. courageux, timide, rusé)',
+  'Role (e.g., Hero, Villain, Mentor)': 'Rôle (ex. Héros, Méchant, Mentor)',
+  'Additional Details (optional)': 'Détails Supplémentaires (optionnel)',
+  'Output Style': 'Style de Sortie',
+  'Generate Character': 'Générer Personnage',
+  'Please enter character name': 'Veuillez entrer le nom du personnage',
+  'Please enter character role': 'Veuillez entrer le rôle du personnage',
+  'Detailed': 'Détaillé',
+  'Brief': 'Bref',
+  'Elaborate': 'Élaboré',
+
+  // Home Screen Tool Cards
+  'Create detailed character backstories':
+      'Créer des histoires détaillées de personnages',
+  'Create Character': 'Créer un Personnage',
+  'Transform and improve your existing stories':
+      'Transformer et améliorer vos histoires existantes',
+  'Rewrite Now': 'Réécrire Maintenant',
+  'Generate catchy titles for your stories':
+      'Générer des titres accrocheurs pour vos histoires',
+  'Generate Titles': 'Générer des Titres',
+
+  // Rewrite Story Tool
+  'Rewrite Story': 'Réécrire l\'Histoire',
+  'Paste Your Story': 'Collez Votre Histoire',
+  'Paste your story here to rewrite...':
+      'Collez votre histoire ici pour la réécrire...',
+  'Select Tone': 'Sélectionner le Ton',
+  'Rewrite Style': 'Style de Réécriture',
+  'Output Length': 'Longueur de Sortie',
+  'Please paste your story': 'Veuillez coller votre histoire',
+  'Story is too short. Please provide more content.':
+      'L\'histoire est trop courte. Veuillez fournir plus de contenu.',
+  // Tone options
+  'Same': 'Identique',
+  'More Dramatic': 'Plus Dramatique',
+  'More Humorous': 'Plus Humoristique',
+  'More Emotional': 'Plus Émotionnel',
+  'More Suspenseful': 'Plus Suspense',
+  'Lighter': 'Plus Léger',
+  // Style options
+  'Improved': 'Amélioré',
+  'Simplified': 'Simplifié',
+  'More Descriptive': 'Plus Descriptif',
+  'More Dialogue': 'Plus de Dialogue',
+  'More Action': 'Plus d\'Action',
+  'Literary': 'Littéraire',
+  // Length options
+  'Shorter': 'Plus Court',
+  'Longer': 'Plus Long',
+  'Much Longer': 'Beaucoup Plus Long',
+
+  // Title Generator Tool
+  'Title Generator': 'Générateur de Titres',
+  'Story/Book Topic': 'Sujet de l\'Histoire/Livre',
+  'Keywords (Optional)': 'Mots-clés (Optionnel)',
+  'Describe your story topic or theme...':
+      'Décrivez le sujet de votre histoire...',
+  'e.g., magic, dragon, adventure': 'ex., magie, dragon, aventure',
+  'Title For': 'Titre Pour',
+  'Title Style': 'Style de Titre',
+  'Number of Titles': 'Nombre de Titres',
+  // Type options
+  'Book': 'Livre',
+  'Short Story': 'Nouvelle',
+  'Novel': 'Roman',
+  'Chapter': 'Chapitre',
+  'Series': 'Série',
+  // Title Style options
+  'Simple': 'Simple',
+  'Mysterious': 'Mystérieux',
+  'Dramatic': 'Dramatique',
+  'Catchy': 'Accrocheur',
+  'Poetic': 'Poétique',
+  // Genre options
+  'Kids': 'Enfants',
+
+  // Blog Writer Tool
+  'Blog Writer': 'Rédacteur de Blog',
+  'Blog Topic': 'Sujet du Blog',
+  'Target Keywords': 'Mots-clés Cibles',
+  'Target Audience (Optional)': 'Public Cible (Optionnel)',
+  'Enter your blog topic or title...':
+      'Entrez le sujet ou le titre de votre blog...',
+  'e.g., AI writing, content marketing, SEO tips':
+      'ex., écriture IA, marketing de contenu, conseils SEO',
+  'e.g., small business owners, bloggers':
+      'ex., propriétaires de petites entreprises, blogueurs',
+  'Article Type': 'Type d\'Article',
+  'Writing Tone': 'Ton d\'Écriture',
+  'Article Length': 'Longueur de l\'Article',
+  'SEO Options': 'Options SEO',
+  'Include Meta Description': 'Inclure la Méta Description',
+  'Include Keyword Suggestions': 'Inclure les Suggestions de Mots-clés',
+  'Include FAQs Section': 'Inclure la Section FAQ',
+  'Please enter a blog topic': 'Veuillez entrer un sujet de blog',
+  'Generate Blog': 'Générer le Blog',
+  'SEO optimized articles with keywords':
+      'Articles optimisés SEO avec mots-clés',
+  'Write Blog': 'Écrire le Blog',
+  // Article Types
+  'SEO Article': 'Article SEO',
+  'How-To Guide': 'Guide Pratique',
+  'Listicle': 'Article Liste',
+  'Product Review': 'Avis Produit',
+  'Opinion Piece': 'Article d\'Opinion',
+  'News Article': 'Article d\'Actualité',
+  // Blog Tones
+  'Professional': 'Professionnel',
+  'Casual': 'Décontracté',
+  'Informative': 'Informatif',
+  'Persuasive': 'Persuasif',
+  'Friendly': 'Amical',
+  'Authoritative': 'Autoritaire',
+  // Blog Lengths
+  'Short (500-800)': 'Court (500-800)',
+  'Medium (800-1500)': 'Moyen (800-1500)',
+  'Long (1500-2500)': 'Long (1500-2500)',
+  'Detailed (2500+)': 'Détaillé (2500+)',
+
+  // YouTube Script Tool
+  'YouTube Script': 'Script YouTube',
+  'Video Topic': 'Sujet de la Vidéo',
+  'Key Points (Optional)': 'Points Clés (Optionnel)',
+  'What is your video about?': 'De quoi parle votre vidéo?',
+  'List key points to cover (optional)...':
+      'Listez les points clés à couvrir (optionnel)...',
+  'Video Duration': 'Durée de la Vidéo',
+  'Script Options': 'Options du Script',
+  'Include Hook/Intro': 'Inclure Accroche/Intro',
+  'Include Call-to-Action': 'Inclure Appel à l\'Action',
+  'Include Timestamps': 'Inclure les Horodatages',
+  'Please enter a video topic': 'Veuillez entrer un sujet de vidéo',
+  'Generate Script': 'Générer le Script',
+  'Create scripts for videos & reels': 'Créez des scripts pour vidéos et reels',
+  'Create Script': 'Créer un Script',
+  // Script Types
+  'Storytime': 'Heure du Conte',
+  'Documentary': 'Documentaire',
+  'Short Reel': 'Reel Court',
+  'Educational': 'Éducatif',
+  'Review': 'Critique',
+  'Tutorial': 'Tutoriel',
+  // Durations
+  '< 1 min (Shorts)': '< 1 min (Shorts)',
+  '1-3 min': '1-3 min',
+  '5-10 min': '5-10 min',
+  '10-20 min': '10-20 min',
+  '20+ min': '20+ min',
+  // Script Tones
+  'Engaging': 'Engageant',
+  'Energetic': 'Énergique',
+  'Calm': 'Calme',
+  'Funny': 'Drôle',
+
+  // Story Generator - Styles
+  'Inspired': 'Inspiré',
+
+  // Script Writer - Script Tones (formats)
+  'Film Script': 'Scénario de Film',
+  'Stage Play': 'Pièce de Théâtre',
+  'Scene Breakdown': 'Découpage de Scène',
+  'Dialogue Only': 'Dialogue Seulement',
+
+  // Ad & UI
+  'Ad loading please wait..':
+      'Chargement de la publicité, veuillez patienter..',
+
+  // Word Counter & Reading Time
+  'Words:': 'Mots:',
+  'Reading:': 'Lecture:',
+
+  // Missing strings from hi.dart
+  'Adventure': 'Aventure',
 };

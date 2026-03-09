@@ -9,17 +9,21 @@ class CustomDpdownForScript extends StatefulWidget {
 
 class _CustomDpdownForScriptState extends State<CustomDpdownForScript> {
   String selectedscriptType1 = 'YouTube Video';
-  String selectedscriptType2= 'Comedy';
+  String selectedscriptType2 = 'Comedy';
 
   var apiController = Get.find<GeminiApiServiceController>();
   final List<String> scriptTone = [
     'YouTube Video',
     "Short Film",
+    "Film Script",
+    "Stage Play",
     'Advertisement',
     'Podcast',
-    'Reel', 
+    'Reel',
     "Tiktok Video",
     "Movie",
+    "Scene Breakdown",
+    "Dialogue Only",
   ];
 
   final List<String> scriptType = [
@@ -32,14 +36,14 @@ class _CustomDpdownForScriptState extends State<CustomDpdownForScript> {
     "Mystery",
     "Fairy Tale",
     "Thriller",
-   
+    "Sci-Fi",
+    "Kids",
   ];
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-      children: [ 
-        
+    return Column(
+      children: [
         // Academic Level Dropdown
         _buildDropdown(
           label: 'Script Tone',
@@ -52,9 +56,9 @@ class _CustomDpdownForScriptState extends State<CustomDpdownForScript> {
             });
           },
         ),
-        
+
         SizedBox(height: 24),
-        
+
         // Type of Paper Dropdown
         _buildDropdown(
           label: 'Script Type',
@@ -68,8 +72,7 @@ class _CustomDpdownForScriptState extends State<CustomDpdownForScript> {
           },
         ),
       ],
-    )
-   ;
+    );
   }
 
   Widget _buildDropdown({
@@ -78,14 +81,11 @@ class _CustomDpdownForScriptState extends State<CustomDpdownForScript> {
     required List<String> items,
     required ValueChanged<String?> onChanged,
   }) {
-    return Container( 
+    return Container(
       decoration: BoxDecoration(
         color: Color(0xFF1A1A1E),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: Color(0xFF34343C),
-          width: 1,
-        ),
+        border: Border.all(color: Color(0xFF34343C), width: 1),
       ),
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       child: Column(
@@ -93,15 +93,14 @@ class _CustomDpdownForScriptState extends State<CustomDpdownForScript> {
         children: [
           Text(
             label.tr,
-            style: TextStyle(
-              color: Color(0xff787878),
-              fontSize: 14,
-            ),
+            style: TextStyle(color: Color(0xff787878), fontSize: 14),
           ),
           Container(
             height: 40,
             child: DropdownButtonHideUnderline(
-              child: DropdownButton<String>(iconEnabledColor: Colors.white,iconDisabledColor:  Colors.white,
+              child: DropdownButton<String>(
+                iconEnabledColor: Colors.white,
+                iconDisabledColor: Colors.white,
                 value: value,
                 isExpanded: true,
                 icon: Icon(Icons.keyboard_arrow_down, color: Colors.grey[600]),
