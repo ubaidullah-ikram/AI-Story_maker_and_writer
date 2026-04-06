@@ -22,6 +22,7 @@ import 'package:ai_story_writer/view/input_screen/title_generator_input.dart';
 import 'package:ai_story_writer/view/input_screen/blog_writer_input.dart';
 import 'package:ai_story_writer/view/input_screen/youtube_script_input.dart';
 import 'package:ai_story_writer/view/pro_screen/pro_secreen.dart';
+import 'package:ai_story_writer/view/result_view/dmy.dart';
 import 'package:ai_story_writer/view_model/home_view_model/home_view_model.dart';
 import 'package:ai_story_writer/view_model/input_controller/input_controller.dart';
 import 'package:ai_story_writer/view_model/pro_sccree_model/pro_Screen_controller.dart';

@@ -8,6 +8,7 @@ import 'package:ai_story_writer/res/app_images/app_images.dart';
 import 'package:ai_story_writer/res/app_responsive/responsive_config.dart';
 import 'package:ai_story_writer/services/ad_counter_services.dart';
 import 'package:ai_story_writer/services/admanage_service.dart';
+import 'package:ai_story_writer/services/gemini_optimizer_service.dart';
 import 'package:ai_story_writer/services/remote_config.dart';
 import 'package:ai_story_writer/view/api_request_%20controller/api_request_controller.dart';
 import 'package:ai_story_writer/view/loading_sc/loading_Sc.dart';
@@ -16,6 +17,7 @@ import 'package:ai_story_writer/view/result_view/result_sc.dart';
 import 'package:ai_story_writer/view_model/input_controller/input_controller.dart';
 import 'package:ai_story_writer/view_model/pro_sccree_model/pro_Screen_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -312,6 +314,7 @@ class _StoryGeneratorInputScreenState extends State<StoryGeneratorInputScreen> {
 
   Widget _buildTextInput() {
     return Container(
+      padding: EdgeInsets.only(bottom: 8),
       height: 280,
       decoration: BoxDecoration(
         color: Appcolor.tileBackground,
@@ -325,6 +328,7 @@ class _StoryGeneratorInputScreenState extends State<StoryGeneratorInputScreen> {
         },
         controller: apiController.userInputController,
         maxLines: null,
+        maxLength: GeminiOptimizerService.maxTopicLength,
         expands: true,
         style: TextStyle(
           color: Colors.white,
@@ -544,6 +548,21 @@ class _StoryGeneratorInputScreenState extends State<StoryGeneratorInputScreen> {
           );
           return;
         }
+        // Client-side validation to avoid wasting API tokens
+        final validationError = GeminiOptimizerService.validateInput(
+          apiController.userInputController.text,
+        );
+        if (validationError != null) {
+          Fluttertoast.showToast(
+            msg: validationError.tr,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+          return;
+        }
         if (!Get.find<ProScreenController>().isUserPro.value &&
             selectedLengthIndex != 0) {
           Get.to(() => ProScreen());
@@ -596,41 +615,29 @@ class _StoryGeneratorInputScreenState extends State<StoryGeneratorInputScreen> {
   }
 
   String generateStoryPrompt() {
+    final userInput = GeminiOptimizerService.trimInput(
+      apiController.userInputController.text,
+    );
     String prompt =
-        '''
-CRITICAL INSTRUCTION - READ FIRST:
-1. Before writing anything, silently verify the topic validity
-2. If topic is gibberish/invalid → ONLY respond with: "INVALID_INPUT: The provided topic is gibberish or invalid. Please provide a meaningful topic."
-3. If topic is VALID → Do NOT say anything about validation. Go DIRECTLY to writing the story without any preamble.
+        '''Write a ${selectedLength} ${selectedGenre} story in ${selectedStyle} style (creativity: ${creativity.toStringAsFixed(1)}).
 
----
+Topic: $userInput
 
-You are a creative storyteller. Write a ${selectedLength} ${selectedGenre} story in a ${selectedStyle} style with creativity level of ${creativity.toStringAsFixed(2)} about the following topic: ${apiController.userInputController.text.toString()}
+Rules:
+- The topic MUST be the main character/focus of the story
+- Write FROM the perspective of or CENTERED ON the topic
+- Clear paragraphs with line breaks
+- Simple, engaging wording
 
-CRITICAL REQUIREMENTS:
-⚠️ THE TOPIC ITSELF MUST BE THE MAIN CHARACTER/FOCUS OF THE STORY
-- If topic is about "dog" → DOG must be the hero, not a supporting character
-- If topic is about "cat" → CAT must be the protagonist
-- Write FROM the perspective of or CENTERED ON the topic word itself
-- Do NOT replace the topic with a human character
-
-FORMATTING REQUIREMENTS:
-- Write in simple, easy-to-understand wording
-- Use clear paragraphs (separate each paragraph with a line break)
-- Make the story engaging and age-appropriate
-- Build the story with a clear beginning, middle, and end
-
-STORY STRUCTURE:
-1. **TITLE**: Create a catchy title
-2. **STORY**: Write the main narrative (${selectedLength == 'Short'
+Structure:
+1. **TITLE**: Catchy title
+2. **STORY**: Main narrative (${selectedLength == 'Short'
             ? '3-4 paragraphs'
             : selectedLength == 'Medium'
             ? '5-7 paragraphs'
             : '8-12 paragraphs'})
-3. **CHARACTER LESSON**: What the main character (the topic) learns or achieves
-4. **MORAL**: The key lesson/moral of the story (1-2 sentences, clear and simple)
-
-Return the story in this exact format with clear headings.
+3. **CHARACTER LESSON**: What the main character learns
+4. **MORAL**: Key lesson (1-2 sentences)
 ''';
 
     return prompt;

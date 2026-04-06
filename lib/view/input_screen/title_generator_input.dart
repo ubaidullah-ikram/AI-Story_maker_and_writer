@@ -4,6 +4,7 @@ import 'package:ai_story_writer/res/app_colors/app_colors.dart';
 import 'package:ai_story_writer/res/app_fonts/app_fonts.dart';
 import 'package:ai_story_writer/res/app_images/app_images.dart';
 import 'package:ai_story_writer/res/app_responsive/responsive_config.dart';
+import 'package:ai_story_writer/services/gemini_optimizer_service.dart';
 import 'package:ai_story_writer/view/api_request_%20controller/api_request_controller.dart';
 import 'package:ai_story_writer/view/loading_sc/loading_Sc.dart';
 import 'package:flutter/material.dart';
@@ -194,6 +195,7 @@ class _TitleGeneratorInputScreenState extends State<TitleGeneratorInputScreen> {
 
   Widget _buildTopicInput() {
     return Container(
+      padding: EdgeInsets.only(bottom: 8),
       height: 120,
       decoration: BoxDecoration(
         color: Appcolor.tileBackground,
@@ -206,6 +208,7 @@ class _TitleGeneratorInputScreenState extends State<TitleGeneratorInputScreen> {
         },
         controller: topicController,
         maxLines: null,
+        maxLength: GeminiOptimizerService.maxTopicLength,
         expands: true,
         style: TextStyle(
           color: Colors.white,
@@ -469,6 +472,20 @@ class _TitleGeneratorInputScreenState extends State<TitleGeneratorInputScreen> {
           );
           return;
         }
+        final validationError = GeminiOptimizerService.validateInput(
+          topicController.text,
+        );
+        if (validationError != null) {
+          Fluttertoast.showToast(
+            msg: validationError.tr,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+          return;
+        }
         FocusManager.instance.primaryFocus?.unfocus();
 
         // Set the title for history
@@ -504,57 +521,23 @@ class _TitleGeneratorInputScreenState extends State<TitleGeneratorInputScreen> {
   }
 
   String generateTitlePrompt() {
+    final trimmedTopic = GeminiOptimizerService.trimInput(topicController.text);
+    final trimmedKeywords = GeminiOptimizerService.trimInput(
+      keywordsController.text,
+      maxLength: GeminiOptimizerService.maxKeywordsLength,
+    );
+
     String prompt =
-        '''
-CRITICAL INSTRUCTION - READ FIRST:
-1. Before generating, silently verify the topic is valid
-2. If topic is gibberish/invalid → ONLY respond with: "INVALID_INPUT: Please provide a valid topic for title generation."
-3. If topic is VALID → Go DIRECTLY to generating titles without any preamble.
+        '''Generate $titleCount unique $selectedStyle titles for a $selectedGenre $selectedType.
 
----
+Topic: $trimmedTopic
+Keywords: ${trimmedKeywords.isNotEmpty ? trimmedKeywords : 'None'}
 
-You are an expert creative writer and title specialist. Generate $titleCount unique and compelling titles for a $selectedType.
+For the top 3 titles, include a brief "Why it works" explanation.
+List remaining titles without explanation.
+End with 1-2 brief title tips for this genre.
 
-INPUT DETAILS:
-- Topic/Theme: ${topicController.text}
-- Genre: $selectedGenre
-- Keywords: ${keywordsController.text.isNotEmpty ? keywordsController.text : 'None specified'}
-- Title Style: $selectedStyle
-- Format: $selectedType
-
-TITLE STYLE GUIDELINES:
-${selectedStyle == 'Creative' ? '- Use imaginative, unique combinations and unexpected word pairings' : ''}
-${selectedStyle == 'Simple' ? '- Use clear, straightforward titles that are easy to remember' : ''}
-${selectedStyle == 'Mysterious' ? '- Create intriguing titles that spark curiosity and questions' : ''}
-${selectedStyle == 'Dramatic' ? '- Use powerful, emotionally charged words and phrases' : ''}
-${selectedStyle == 'Catchy' ? '- Create memorable, hook-like titles that grab attention' : ''}
-${selectedStyle == 'Poetic' ? '- Use beautiful, lyrical language with rhythm and flow' : ''}
-
-OUTPUT FORMAT:
-
-## 📚 $titleCount ${selectedType.toUpperCase()} TITLES
-
-### 🎯 Top Recommendations
-
-1. **[Title 1]**
-   - *Why it works:* Brief explanation
-
-2. **[Title 2]**
-   - *Why it works:* Brief explanation
-
-3. **[Title 3]**
-   - *Why it works:* Brief explanation
-
-### 📝 More Options
-
-4. [Title 4]
-5. [Title 5]
-... (continue to $titleCount)
-
-### 💡 Title Tips
-- Brief advice on choosing the perfect title for this genre
-
-Make each title unique, memorable, and perfectly suited for a $selectedGenre $selectedType!
+Make each title unique, memorable, and suited for a $selectedGenre $selectedType!
 ''';
 
     return prompt;

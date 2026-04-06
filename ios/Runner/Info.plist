@@ -94,6 +94,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs access to your photo library to save and share generated stories as PDF or text files.</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-9804021071767799~8638425308</string>
 	<key>ITSAppUsesNonExemptEncryption</key>

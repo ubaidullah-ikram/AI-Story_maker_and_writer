@@ -274,6 +274,7 @@ Future<void> showCustomRatingDialog() async {
   final hasRated = prefs.getBool('has_rated_app') ?? false;
 
   if (hasRated) {
+    Fluttertoast.showToast(msg: 'You have already rated us. Thank you!'.tr);
     return; // Don't show if already rated
   }
 

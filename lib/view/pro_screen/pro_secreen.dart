@@ -834,7 +834,7 @@ class _ProScreenState extends State<ProScreen> {
   Widget _buildStartTrialButton() {
     return GestureDetector(
       onTap: () {
-        log("${products!}");
+        // log("${products!}");
         if (products != null) {
           _proscreenController.buyProduct(products!, context);
         }

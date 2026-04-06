@@ -4,6 +4,7 @@ import 'package:ai_story_writer/res/app_colors/app_colors.dart';
 import 'package:ai_story_writer/res/app_fonts/app_fonts.dart';
 import 'package:ai_story_writer/res/app_images/app_images.dart';
 import 'package:ai_story_writer/res/app_responsive/responsive_config.dart';
+import 'package:ai_story_writer/services/gemini_optimizer_service.dart';
 import 'package:ai_story_writer/view/api_request_%20controller/api_request_controller.dart';
 import 'package:ai_story_writer/view/loading_sc/loading_Sc.dart';
 import 'package:flutter/material.dart';
@@ -197,6 +198,7 @@ class _BlogWriterInputScreenState extends State<BlogWriterInputScreen> {
 
   Widget _buildTopicInput() {
     return Container(
+      padding: EdgeInsets.only(bottom: 8),
       height: 100,
       decoration: BoxDecoration(
         color: Appcolor.tileBackground,
@@ -209,6 +211,7 @@ class _BlogWriterInputScreenState extends State<BlogWriterInputScreen> {
         },
         controller: topicController,
         maxLines: null,
+        maxLength: GeminiOptimizerService.maxTopicLength,
         expands: true,
         style: TextStyle(
           color: Colors.white,
@@ -516,6 +519,20 @@ class _BlogWriterInputScreenState extends State<BlogWriterInputScreen> {
           );
           return;
         }
+        final validationError = GeminiOptimizerService.validateInput(
+          topicController.text,
+        );
+        if (validationError != null) {
+          Fluttertoast.showToast(
+            msg: validationError.tr,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+          return;
+        }
         FocusManager.instance.primaryFocus?.unfocus();
 
         // Set the title for history
@@ -550,79 +567,35 @@ class _BlogWriterInputScreenState extends State<BlogWriterInputScreen> {
   }
 
   String generateBlogPrompt() {
+    final trimmedTopic = GeminiOptimizerService.trimInput(topicController.text);
+    final trimmedKeywords = GeminiOptimizerService.trimInput(
+      keywordsController.text,
+      maxLength: GeminiOptimizerService.maxKeywordsLength,
+    );
+    final trimmedAudience = GeminiOptimizerService.trimInput(
+      targetAudienceController.text,
+      maxLength: GeminiOptimizerService.maxKeywordsLength,
+    );
+
     String prompt =
-        '''
-CRITICAL INSTRUCTION - READ FIRST:
-1. Before writing, silently verify the topic is valid
-2. If topic is gibberish/invalid → ONLY respond with: "INVALID_INPUT: Please provide a valid blog topic."
-3. If topic is VALID → Go DIRECTLY to writing the blog without any preamble.
+        '''Write a comprehensive, SEO-optimized $selectedType blog article.
 
----
+Topic: $trimmedTopic
+Keywords: ${trimmedKeywords.isNotEmpty ? trimmedKeywords : 'Generate relevant keywords'}
+Audience: ${trimmedAudience.isNotEmpty ? trimmedAudience : 'General'}
+Tone: $selectedTone
+Length: $selectedLength words
 
-You are an expert SEO content writer and digital marketing specialist. Write a comprehensive, SEO-optimized blog article.
+SEO: Use primary keyword in title and first paragraph, proper H1/H2/H3 structure, short scannable paragraphs.
 
-ARTICLE SPECIFICATIONS:
-- Topic: ${topicController.text}
-- Target Keywords: ${keywordsController.text.isNotEmpty ? keywordsController.text : 'Generate relevant keywords'}
-- Target Audience: ${targetAudienceController.text.isNotEmpty ? targetAudienceController.text : 'General audience'}
-- Article Type: $selectedType
-- Tone: $selectedTone
-- Length: $selectedLength words
+${includeMetaDescription ? 'Include: META DESCRIPTION (150-160 chars) and SEO TITLE TAG (under 60 chars).' : ''}
+${includeKeywordSuggestions ? 'Include: KEYWORD ANALYSIS with primary, secondary, and LSI keywords.' : ''}
 
-SEO REQUIREMENTS:
-1. Use the primary keyword naturally in the title, first paragraph, and throughout
-2. Include secondary keywords and LSI keywords
-3. Use proper heading structure (H1, H2, H3)
-4. Write engaging, scannable content with short paragraphs
-5. Include internal linking suggestions
-6. Optimize for featured snippets where applicable
+Write the complete article with proper headings, engaging intro, valuable content, and strong conclusion.
 
-OUTPUT FORMAT:
+${includeFAQs ? 'Include: 4 relevant FAQs with concise answers.' : ''}
 
-${includeMetaDescription ? '''
-## 📝 META DESCRIPTION
-[Write a compelling 150-160 character meta description with primary keyword]
-
-## 🏷️ SEO TITLE TAG
-[Write an optimized title tag under 60 characters]
-''' : ''}
-
-${includeKeywordSuggestions ? '''
-## 🔑 KEYWORD ANALYSIS
-**Primary Keyword:** [Main keyword]
-**Secondary Keywords:** [List 5-7 related keywords]
-**LSI Keywords:** [List 5-7 semantically related terms]
-''' : ''}
-
-## 📰 ARTICLE
-
-# [SEO-Optimized Title]
-
-[Write the complete article with proper H2 and H3 headings, engaging introduction, valuable content, and strong conclusion]
-
-${includeFAQs ? '''
-## ❓ FREQUENTLY ASKED QUESTIONS
-
-**Q1: [Relevant question]**
-A: [Concise answer]
-
-**Q2: [Relevant question]**
-A: [Concise answer]
-
-**Q3: [Relevant question]**
-A: [Concise answer]
-
-**Q4: [Relevant question]**
-A: [Concise answer]
-''' : ''}
-
-## 📊 CONTENT SUMMARY
-- **Word Count:** [Approximate]
-- **Reading Time:** [X minutes]
-- **Keyword Density:** [Recommendation]
-- **Readability Score:** [Easy/Medium/Advanced]
-
-Make the content engaging, valuable, and perfectly optimized for search engines!
+Add a CONTENT SUMMARY with word count, reading time, and readability score.
 ''';
 
     return prompt;

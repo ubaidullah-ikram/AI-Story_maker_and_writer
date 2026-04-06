@@ -8,6 +8,7 @@ import 'package:ai_story_writer/res/app_images/app_images.dart';
 import 'package:ai_story_writer/res/app_responsive/responsive_config.dart';
 import 'package:ai_story_writer/services/ad_counter_services.dart';
 import 'package:ai_story_writer/services/admanage_service.dart';
+import 'package:ai_story_writer/services/gemini_optimizer_service.dart';
 import 'package:ai_story_writer/services/remote_config.dart';
 import 'package:ai_story_writer/view/api_request_%20controller/api_request_controller.dart';
 import 'package:ai_story_writer/view/input_screen/widgets/custom_dropdown_for_essay.dart';
@@ -215,6 +216,7 @@ class _EssayWriterScreenState extends State<EssayWriterScreen> {
 
   Widget _buildTextInput() {
     return Container(
+      padding: EdgeInsets.only(bottom: 8),
       height: 280,
       decoration: BoxDecoration(
         color: Appcolor.tileBackground,
@@ -224,6 +226,7 @@ class _EssayWriterScreenState extends State<EssayWriterScreen> {
       child: TextField(
         controller: apiController.userInputController,
         maxLines: null,
+        maxLength: GeminiOptimizerService.maxTopicLength,
         expands: true,
         onTapUpOutside: (event) {
           FocusManager.instance.primaryFocus!.unfocus();
@@ -358,6 +361,20 @@ class _EssayWriterScreenState extends State<EssayWriterScreen> {
           );
           return;
         }
+        final validationError = GeminiOptimizerService.validateInput(
+          apiController.userInputController.text,
+        );
+        if (validationError != null) {
+          Fluttertoast.showToast(
+            msg: validationError.tr,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+          return;
+        }
         FocusManager.instance.primaryFocus?.unfocus();
         if (!Get.find<ProScreenController>().isUserPro.value &&
             selectedLenghtIndex != 0) {
@@ -407,39 +424,21 @@ class _EssayWriterScreenState extends State<EssayWriterScreen> {
     required String paperType,
     required String essayLength,
   }) {
+    final trimmedTopic = GeminiOptimizerService.trimInput(topic);
     String prompt =
-        '''
-CRITICAL INSTRUCTION - READ FIRST:
-1. Before writing anything, silently verify the topic validity
-2. If topic is gibberish/invalid → ONLY respond with: "INVALID_INPUT: The provided topic is gibberish or invalid. Please provide a meaningful topic."
-3. If topic is VALID → Do NOT say anything about validation. Do NOT say "Okay, I will create..." or any preamble. Go DIRECTLY to writing the script. Do not include any introduction, confirmation, or acknowledgment text.
+        '''Write a $paperType essay for $academicLevel level.
 
----
-
-You are an expert essay writer. Write a well-structured, high-quality essay based on the following parameters:
-
-Topic: $topic
-
-Academic Level: $academicLevel
-Paper Type: $paperType
-Essay Length: $essayLength
+Topic: $trimmedTopic
+Length: $essayLength
 
 Requirements:
-1. Create a compelling introduction with a clear thesis statement
-2. Develop well-organized body paragraphs with strong arguments and evidence
-3. Include smooth transitions between paragraphs
-4. Write a conclusive ending that reinforces the main points
-5. Use appropriate vocabulary and tone for the $academicLevel level
-6. Follow the $paperType essay structure and conventions
-7. Ensure the essay length matches the requested word count range
+- Compelling introduction with clear thesis
+- Well-organized body paragraphs with arguments and evidence
+- Smooth transitions between paragraphs
+- Conclusive ending reinforcing main points
+- Appropriate vocabulary for $academicLevel level
 
-Format the essay with:
-- Clear paragraph breaks
-- Proper structure (Introduction, Body Paragraphs, Conclusion)
-- Academic writing style
-- No plagiarism - original content only
-
-Write the complete essay now:
+Format: Introduction, Body Paragraphs, Conclusion with clear paragraph breaks.
 ''';
 
     return prompt;

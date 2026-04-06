@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:ai_story_writer/model/all_query_model.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:flutter/foundation.dart';
 
 class RemoteConfigService {
   static final RemoteConfigService _instance = RemoteConfigService._internal();
@@ -15,7 +17,9 @@ class RemoteConfigService {
     await _remoteConfig.setConfigSettings(
       RemoteConfigSettings(
         fetchTimeout: const Duration(seconds: 10),
-        minimumFetchInterval: const Duration(seconds: 5), // testing
+        minimumFetchInterval: kDebugMode
+            ? const Duration(seconds: 5)
+            : const Duration(hours: 2), // testing
       ),
     );
 
@@ -28,7 +32,9 @@ class RemoteConfigService {
   bool get banner_ad_for_android =>
       _remoteConfig.getBool('banner_ad_for_android');
   String get apiKey => _remoteConfig.getString('api_key');
-  int get force_update_version => _remoteConfig.getInt('force_update_version');
+  int get force_update_version => _remoteConfig.getInt(
+    Platform.isAndroid ? "force_update_for_android" : 'force_update_version',
+  );
   bool get banner_add_for_IOS => _remoteConfig.getBool('banner_add_for_IOS');
   bool get inter_ad_for_IOS => _remoteConfig.getBool('inter_ad_for_IOS');
   bool get intersitial_ads_for_andiod =>

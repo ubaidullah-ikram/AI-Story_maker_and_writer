@@ -4,6 +4,7 @@ import 'package:ai_story_writer/res/app_colors/app_colors.dart';
 import 'package:ai_story_writer/res/app_fonts/app_fonts.dart';
 import 'package:ai_story_writer/res/app_images/app_images.dart';
 import 'package:ai_story_writer/res/app_responsive/responsive_config.dart';
+import 'package:ai_story_writer/services/gemini_optimizer_service.dart';
 import 'package:ai_story_writer/view/api_request_%20controller/api_request_controller.dart';
 import 'package:ai_story_writer/view/loading_sc/loading_Sc.dart';
 import 'package:flutter/material.dart';
@@ -176,6 +177,7 @@ class _RewriteStoryInputScreenState extends State<RewriteStoryInputScreen> {
   Widget _buildStoryInput() {
     return Container(
       height: 200,
+      padding: EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
         color: Appcolor.tileBackground,
         borderRadius: BorderRadius.circular(20),
@@ -187,6 +189,7 @@ class _RewriteStoryInputScreenState extends State<RewriteStoryInputScreen> {
         },
         controller: storyController,
         maxLines: null,
+        maxLength: GeminiOptimizerService.maxStoryRewriteLength,
         expands: true,
         style: TextStyle(
           color: Colors.white,
@@ -481,47 +484,26 @@ class _RewriteStoryInputScreenState extends State<RewriteStoryInputScreen> {
     }
 
     String prompt =
-        '''
-CRITICAL INSTRUCTION - READ FIRST:
-1. Before rewriting, silently verify the story is valid content
-2. If content is gibberish/invalid → ONLY respond with: "INVALID_INPUT: Please provide a valid story to rewrite."
-3. If content is VALID → Go DIRECTLY to rewriting without any preamble.
+        '''Rewrite the following story with these specifications:
 
----
-
-You are an expert story editor and rewriter. Rewrite the following story with these specifications:
-
-REWRITE INSTRUCTIONS:
-- Tone: $toneInstruction
-- Style: $styleInstruction
-- Length: $lengthInstruction
+Tone: $toneInstruction
+Style: $styleInstruction
+Length: $lengthInstruction
 
 ORIGINAL STORY:
 """
-${storyController.text}
+${GeminiOptimizerService.trimInput(storyController.text, maxLength: GeminiOptimizerService.maxStoryRewriteLength)}
 """
 
-REQUIREMENTS:
-1. Maintain the core plot, characters, and setting
-2. Improve grammar, flow, and readability
-3. Apply the specified tone, style, and length changes
-4. Make the story more engaging and polished
-5. Keep the original theme and message intact
+Rules:
+- Maintain core plot, characters, and setting
+- Improve grammar, flow, and readability
+- Apply the specified tone, style, and length changes
+- Keep original theme and message intact
 
-OUTPUT FORMAT:
-
-## ✨ REWRITTEN STORY
-
-[Your beautifully rewritten story here]
-
----
-
-### 📝 CHANGES MADE
-- Brief summary of improvements and changes applied
-- What was enhanced
-- Overall quality improvements
-
-Make the rewritten story captivating and professionally written!
+Output:
+1. REWRITTEN STORY section with the improved story
+2. CHANGES MADE section with brief summary of improvements
 ''';
 
     return prompt;

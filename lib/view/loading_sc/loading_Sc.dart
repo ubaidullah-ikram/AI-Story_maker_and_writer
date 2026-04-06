@@ -4,6 +4,7 @@ import 'package:ai_story_writer/res/app_colors/app_colors.dart';
 import 'package:ai_story_writer/view/api_request_%20controller/api_request_controller.dart';
 import 'package:ai_story_writer/view/result_view/result_sc.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class AILoadingScreen extends StatefulWidget {
@@ -69,7 +70,7 @@ class _AILoadingScreenState extends State<AILoadingScreen>
     apiController
         .callGeminiAPI(
           prompt: widget.prompt,
-          toolName: widget.toolName,
+          toolName: widget.toolName ?? '',
           title: apiController.userInputController.text,
         )
         .then((response) {
@@ -80,6 +81,11 @@ class _AILoadingScreenState extends State<AILoadingScreen>
             );
             Get.off(() => ResultScView(resultText: response));
             // Get.to(()=>ResultScView());
+          } else {
+            Get.back();
+            Fluttertoast.showToast(
+              msg: 'Something went wrong. Please try again.'.tr,
+            );
           }
         });
   }

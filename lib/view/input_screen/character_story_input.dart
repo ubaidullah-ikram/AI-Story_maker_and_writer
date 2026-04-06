@@ -4,6 +4,7 @@ import 'package:ai_story_writer/res/app_colors/app_colors.dart';
 import 'package:ai_story_writer/res/app_fonts/app_fonts.dart';
 import 'package:ai_story_writer/res/app_images/app_images.dart';
 import 'package:ai_story_writer/res/app_responsive/responsive_config.dart';
+import 'package:ai_story_writer/services/gemini_optimizer_service.dart';
 import 'package:ai_story_writer/view/api_request_%20controller/api_request_controller.dart';
 import 'package:ai_story_writer/view/loading_sc/loading_Sc.dart';
 import 'package:flutter/material.dart';
@@ -210,6 +211,7 @@ class _CharacterStoryInputScreenState extends State<CharacterStoryInputScreen> {
     int maxLines = 1,
   }) {
     return Container(
+      // padding: EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
         color: Appcolor.tileBackground,
         borderRadius: BorderRadius.circular(16),
@@ -228,7 +230,7 @@ class _CharacterStoryInputScreenState extends State<CharacterStoryInputScreen> {
           hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
           border: InputBorder.none,
           contentPadding: EdgeInsets.all(16),
-          prefixIcon: Icon(icon, color: Appcolor.themeColor),
+          // prefixIcon: Icon(icon, color: Appcolor.themeColor),
         ),
       ),
     );
@@ -361,6 +363,21 @@ class _CharacterStoryInputScreenState extends State<CharacterStoryInputScreen> {
           );
           return;
         }
+        final validationError = GeminiOptimizerService.validateInput(
+          characterNameController.text,
+          minLength: 2,
+        );
+        if (validationError != null) {
+          Fluttertoast.showToast(
+            msg: validationError.tr,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+          return;
+        }
         FocusManager.instance.primaryFocus?.unfocus();
 
         // Set the title for history
@@ -395,77 +412,33 @@ class _CharacterStoryInputScreenState extends State<CharacterStoryInputScreen> {
   }
 
   String generateCharacterPrompt() {
+    final backstoryLength = selectedOutputStyle == 'Brief'
+        ? '2-3 paragraphs'
+        : selectedOutputStyle == 'Detailed'
+        ? '4-5 paragraphs'
+        : '6-8 paragraphs';
+
     String prompt =
-        '''
-CRITICAL INSTRUCTION - READ FIRST:
-1. Before writing anything, silently verify if the character details are valid
-2. If details are gibberish/invalid → ONLY respond with: "INVALID_INPUT: Please provide meaningful character details."
-3. If details are VALID → Go DIRECTLY to generating the character profile without any preamble.
+        '''Create a comprehensive $selectedGenre character profile.
 
----
+Character: ${characterNameController.text}
+Age: ${ageController.text.isNotEmpty ? ageController.text : 'Not specified'}
+Personality: ${personalityController.text.isNotEmpty ? personalityController.text : 'Not specified'}
+Role: ${roleController.text}
+Details: ${additionalDetailsController.text.isNotEmpty ? GeminiOptimizerService.trimInput(additionalDetailsController.text, maxLength: GeminiOptimizerService.maxAdditionalDetailsLength) : 'None'}
+Output Style: $selectedOutputStyle
 
-You are an expert character development specialist. Create a comprehensive character profile for a $selectedGenre story based on the following details:
+Include these sections:
+1. CHARACTER PROFILE heading with name
+2. BACKSTORY ($backstoryLength): origin, key events, journey
+3. STRENGTHS (4-6): physical, mental, social, unique talents
+4. WEAKNESSES (3-5): flaws, vulnerabilities, fears
+5. CHARACTER ARC: starting point → challenges → transformation → goal
+6. DIALOGUE STYLE: vocabulary, tone, speech patterns
+7. CATCHPHRASES: 5-7 memorable signature lines with context
+8. SUMMARY: 2-3 sentence memorable summary
 
-CHARACTER INPUT:
-- Name: ${characterNameController.text}
-- Age: ${ageController.text.isNotEmpty ? ageController.text : 'Not specified'}
-- Personality: ${personalityController.text.isNotEmpty ? personalityController.text : 'Not specified'}
-- Role: ${roleController.text}
-- Additional Details: ${additionalDetailsController.text.isNotEmpty ? additionalDetailsController.text : 'None'}
-
-OUTPUT STYLE: $selectedOutputStyle
-
-REQUIRED OUTPUT FORMAT:
-
-## 🎭 CHARACTER PROFILE: ${characterNameController.text.toUpperCase()}
-
-### 📖 BACKSTORY
-Write a compelling backstory (${selectedOutputStyle == 'Brief'
-            ? '2-3 paragraphs'
-            : selectedOutputStyle == 'Detailed'
-            ? '4-5 paragraphs'
-            : '6-8 paragraphs'}) explaining:
-- Their origin and upbringing
-- Key events that shaped them
-- Their journey to their current role
-
-### 💪 STRENGTHS
-List 4-6 key strengths with brief explanations:
-- Physical abilities
-- Mental/Intellectual strengths
-- Social skills
-- Unique talents
-
-### ⚠️ WEAKNESSES
-List 3-5 weaknesses/flaws:
-- Character flaws
-- Vulnerabilities
-- Fears or limitations
-
-### 📈 CHARACTER ARC
-Describe the character's potential growth journey:
-- Starting point (who they are now)
-- Challenges they must face
-- Transformation (who they could become)
-- Ultimate goal or destiny
-
-### 💬 DIALOGUE STYLE
-Describe how this character speaks:
-- Vocabulary level and word choice
-- Tone and manner of speaking
-- Unique speech patterns
-- Cultural or regional influences
-
-### 🎯 CATCHPHRASES
-Provide 5-7 memorable catchphrases or signature lines this character would use:
-1. [Quote with context]
-2. [Quote with context]
-...
-
-### 🎨 SUMMARY
-A brief, memorable summary of this character in 2-3 sentences.
-
-Make the character feel alive, authentic, and memorable!
+Make the character feel alive and authentic!
 ''';
 
     return prompt;

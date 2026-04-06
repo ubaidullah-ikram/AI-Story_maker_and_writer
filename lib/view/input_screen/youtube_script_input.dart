@@ -4,6 +4,7 @@ import 'package:ai_story_writer/res/app_colors/app_colors.dart';
 import 'package:ai_story_writer/res/app_fonts/app_fonts.dart';
 import 'package:ai_story_writer/res/app_images/app_images.dart';
 import 'package:ai_story_writer/res/app_responsive/responsive_config.dart';
+import 'package:ai_story_writer/services/gemini_optimizer_service.dart';
 import 'package:ai_story_writer/view/api_request_%20controller/api_request_controller.dart';
 import 'package:ai_story_writer/view/loading_sc/loading_Sc.dart';
 import 'package:flutter/material.dart';
@@ -273,6 +274,7 @@ class _YouTubeScriptInputScreenState extends State<YouTubeScriptInputScreen> {
 
   Widget _buildTopicInput() {
     return Container(
+      padding: EdgeInsets.only(bottom: 8),
       height: 100,
       decoration: BoxDecoration(
         color: Appcolor.tileBackground,
@@ -285,6 +287,7 @@ class _YouTubeScriptInputScreenState extends State<YouTubeScriptInputScreen> {
         },
         controller: topicController,
         maxLines: null,
+        maxLength: GeminiOptimizerService.maxTopicLength,
         expands: true,
         style: TextStyle(
           color: Colors.white,
@@ -304,6 +307,7 @@ class _YouTubeScriptInputScreenState extends State<YouTubeScriptInputScreen> {
   Widget _buildKeyPointsInput() {
     return Container(
       height: 80,
+      padding: EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
         color: Appcolor.tileBackground,
         borderRadius: BorderRadius.circular(16),
@@ -312,6 +316,7 @@ class _YouTubeScriptInputScreenState extends State<YouTubeScriptInputScreen> {
       child: TextField(
         controller: keyPointsController,
         maxLines: null,
+        maxLength: GeminiOptimizerService.maxKeywordsLength,
         expands: true,
         style: TextStyle(
           color: Colors.white,
@@ -514,6 +519,20 @@ class _YouTubeScriptInputScreenState extends State<YouTubeScriptInputScreen> {
           );
           return;
         }
+        final validationError = GeminiOptimizerService.validateInput(
+          topicController.text,
+        );
+        if (validationError != null) {
+          Fluttertoast.showToast(
+            msg: validationError.tr,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0,
+          );
+          return;
+        }
         FocusManager.instance.primaryFocus?.unfocus();
 
         // Set the title for history
@@ -548,156 +567,54 @@ class _YouTubeScriptInputScreenState extends State<YouTubeScriptInputScreen> {
   }
 
   String generateYouTubeScriptPrompt() {
-    String scriptTypeInstructions = _getScriptTypeInstructions();
+    final trimmedTopic = GeminiOptimizerService.trimInput(topicController.text);
+    final trimmedKeyPoints = GeminiOptimizerService.trimInput(
+      keyPointsController.text,
+      maxLength: GeminiOptimizerService.maxKeywordsLength,
+    );
+    String scriptTypeHint = _getScriptTypeHint();
 
     String prompt =
-        '''
-CRITICAL INSTRUCTION - READ FIRST:
-1. Before writing, silently verify the topic is valid
-2. If topic is gibberish/invalid → ONLY respond with: "INVALID_INPUT: Please provide a valid video topic."
-3. If topic is VALID → Go DIRECTLY to writing the script without any preamble.
+        '''Write a complete $selectedScriptType YouTube script.
 
----
+Topic: $trimmedTopic
+Duration: $selectedDuration
+Tone: $selectedTone
+Key Points: ${trimmedKeyPoints.isNotEmpty ? trimmedKeyPoints : 'Cover the most important aspects'}
 
-You are an expert YouTube scriptwriter and content creator. Write a complete, engaging $selectedScriptType script.
+Style: $scriptTypeHint
 
-VIDEO SPECIFICATIONS:
-- Topic: ${topicController.text}
-- Script Type: $selectedScriptType
-- Duration: $selectedDuration
-- Tone: $selectedTone
-- Key Points: ${keyPointsController.text.isNotEmpty ? keyPointsController.text : 'Cover the most important aspects'}
-
-SCRIPT TYPE INSTRUCTIONS:
-$scriptTypeInstructions
-
-OUTPUT FORMAT:
-
-## 🎬 VIDEO SCRIPT: ${topicController.text.toUpperCase()}
-
-### 📋 VIDEO METADATA
-- **Title Suggestions:** [3 catchy, SEO-friendly titles]
-- **Description:** [Compelling video description with keywords]
-- **Tags:** [10-15 relevant tags]
-
-${includeTimestamps ? '''
-### ⏱️ TIMESTAMPS
-0:00 - Introduction
-[Add appropriate timestamps based on script sections]
-''' : ''}
-
-${includeHooks ? '''
-### 🪝 HOOK (First 5-10 seconds)
-[Write an attention-grabbing hook that makes viewers want to keep watching]
-''' : ''}
-
-### 📜 FULL SCRIPT
-
-**[INTRO]**
-[Engaging introduction - greet audience, introduce topic]
-
-**[MAIN CONTENT]**
-
-**Section 1: [Title]**
-[Detailed script content]
-
-**Section 2: [Title]**
-[Detailed script content]
-
-**Section 3: [Title]**
-[Detailed script content]
-
-[Add more sections as needed for the duration]
-
-**[CONCLUSION]**
-[Summarize key points, provide final thoughts]
-
-${includeCTA ? '''
-**[CALL TO ACTION]**
-[Ask for likes, subscribe, comment, share - make it natural and engaging]
-''' : ''}
-
-### 🎤 DELIVERY NOTES
-- Tone suggestions
-- Emphasis points
-- Pause recommendations
-- Visual/B-roll suggestions
-
-### 📊 SCRIPT INFO
-- **Estimated Word Count:** [X words]
-- **Estimated Duration:** $selectedDuration
-- **Speaking Pace:** [Normal/Slow/Fast]
-
-Make the script engaging, well-paced, and optimized for YouTube success!
+Include:
+- VIDEO METADATA: 3 title suggestions, description, 10-15 tags
+${includeTimestamps ? '- TIMESTAMPS for each section' : ''}
+${includeHooks ? '- HOOK (first 5-10 seconds) to grab attention' : ''}
+- FULL SCRIPT: INTRO → MAIN CONTENT (3+ sections) → CONCLUSION
+${includeCTA ? '- CALL TO ACTION (likes, subscribe, comment)' : ''}
+- DELIVERY NOTES: tone, emphasis, pauses, B-roll suggestions
+- SCRIPT INFO: word count, duration, speaking pace
 ''';
 
     return prompt;
   }
 
-  String _getScriptTypeInstructions() {
+  String _getScriptTypeHint() {
     switch (selectedScriptType) {
       case 'Storytime':
-        return '''
-- Write in first-person narrative style
-- Build suspense and emotional connection
-- Include vivid descriptions and dialogue
-- Create a compelling story arc with beginning, middle, and end
-- Add personal touches and reactions
-''';
+        return 'First-person narrative with suspense, vivid descriptions, story arc, personal touches.';
       case 'Documentary':
-        return '''
-- Use authoritative, informative tone
-- Present facts and research
-- Include multiple perspectives
-- Build narrative structure
-- Add context and historical background
-''';
+        return 'Authoritative informative tone, facts/research, multiple perspectives, historical context.';
       case 'Short Reel':
-        return '''
-- Get to the point immediately
-- Write punchy, concise content
-- Include a strong hook in first 2 seconds
-- End with impact or surprise
-- Keep it under 60 seconds
-''';
+        return 'Punchy concise content, strong 2-second hook, under 60 seconds, end with impact.';
       case 'Motivational':
-        return '''
-- Use inspiring, uplifting language
-- Include powerful quotes and examples
-- Build emotional momentum
-- End with actionable advice
-- Connect with viewer's aspirations
-''';
+        return 'Inspiring uplifting language, powerful quotes, emotional momentum, actionable advice.';
       case 'Educational':
-        return '''
-- Break down complex topics simply
-- Use examples and analogies
-- Structure content logically
-- Include recap points
-- Make learning engaging
-''';
+        return 'Break complex topics simply, use analogies, logical structure, recap points.';
       case 'Review':
-        return '''
-- Be honest and balanced
-- Cover pros and cons
-- Include specific details
-- Provide clear recommendation
-- Compare with alternatives if relevant
-''';
+        return 'Honest balanced coverage, pros/cons, specific details, clear recommendation.';
       case 'Tutorial':
-        return '''
-- Provide step-by-step instructions
-- Anticipate viewer questions
-- Include tips and warnings
-- Keep explanations clear
-- Suggest next steps
-''';
+        return 'Step-by-step instructions, anticipate questions, tips/warnings, clear explanations.';
       default:
-        return '''
-- Create engaging, viewer-focused content
-- Maintain consistent pacing
-- Include clear structure
-''';
+        return 'Engaging viewer-focused content with consistent pacing and clear structure.';
     }
   }
 }
