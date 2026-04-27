@@ -82,10 +82,10 @@ class _AILoadingScreenState extends State<AILoadingScreen>
             Get.off(() => ResultScView(resultText: response));
             // Get.to(()=>ResultScView());
           } else {
-            Get.back();
-            Fluttertoast.showToast(
-              msg: 'Something went wrong. Please try again.'.tr,
-            );
+            // Get.back();
+            // Fluttertoast.showToast(
+            //   msg: 'Something went wrong. Please try again.'.tr,
+            // );
           }
         });
   }

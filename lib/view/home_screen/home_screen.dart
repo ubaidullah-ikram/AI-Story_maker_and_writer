@@ -363,6 +363,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
+                      // Text("data ${RemoteConfigService().apiKey}"),
                       // TextButton(
                       //   onPressed: () async {
                       //   onPressed: () async {

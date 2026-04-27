@@ -214,16 +214,16 @@ class GeminiApiServiceController extends GetxController {
     try {
       log('Requesting to Gemini API...from tool $toolName');
       int remaingQueries = await QueryManager.getRemainingQueries();
-      if (remaingQueries < 1) {
-        Fluttertoast.showToast(msg: 'You have reached your free limit'.tr);
-        Get.back();
-        if (Get.find<ProScreenController>().isUserPro.value) {
-          // user pro not going toh purchase
-        } else {
-          Get.to((ProScreen()));
-        }
-        return null;
-      }
+      // if (remaingQueries < 1) {
+      //   Fluttertoast.showToast(msg: 'You have reached your free limit'.tr);
+      //   Get.back();
+      //   if (Get.find<ProScreenController>().isUserPro.value) {
+      //     // user pro not going toh purchase
+      //   } else {
+      //     Get.to((ProScreen()));
+      //   }
+      //   return null;
+      // }
       log('allwoing request');
       // 🌐 HTTP POST Request
       final url = Uri.parse("$baseUrl?key=$geminiApiKey");
@@ -250,7 +250,7 @@ class GeminiApiServiceController extends GetxController {
         String result =
             data['candidates'][0]['content']['parts'][0]['text'] ??
             "No response!";
-        log('✅ API Response received');
+        log('✅ API Response received ${data}');
         // ❌ CHECK IF RESPONSE IS INVALID INPUT MESSAGE
         if (result.contains("INVALID INPUT") ||
             result.contains("INVALID_INPUT") ||

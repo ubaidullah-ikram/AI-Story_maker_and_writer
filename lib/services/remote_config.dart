@@ -31,7 +31,9 @@ class RemoteConfigService {
 
   bool get banner_ad_for_android =>
       _remoteConfig.getBool('banner_ad_for_android');
-  String get apiKey => _remoteConfig.getString('api_key');
+  String get apiKey => _remoteConfig.getString(
+    Platform.isAndroid ? 'api_key' : "api_key_for_ios",
+  );
   int get force_update_version => _remoteConfig.getInt(
     Platform.isAndroid ? "force_update_for_android" : 'force_update_version',
   );
