@@ -28,12 +28,14 @@ class RemoteConfigService {
 
   // ✅ Yahan apke console ke parameter key likho
   // String get welcomeText => _remoteConfig.getString('welcome_text');
-
+  String get backendBaseUrl => _remoteConfig.getString('backend_base_url');
+  String get clientToken => _remoteConfig.getString('client_token');
+  String get app_id => _remoteConfig.getString('app_id');
   bool get banner_ad_for_android =>
       _remoteConfig.getBool('banner_ad_for_android');
-  String get apiKey => _remoteConfig.getString(
-    Platform.isAndroid ? 'api_key' : "api_key_for_ios",
-  );
+  // String get apiKey => _remoteConfig.getString(
+  //   Platform.isAndroid ? 'api_key' : "api_key_for_ios",
+  // );
   int get force_update_version => _remoteConfig.getInt(
     Platform.isAndroid ? "force_update_for_android" : 'force_update_version',
   );
